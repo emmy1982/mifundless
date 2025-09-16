@@ -1,0 +1,151 @@
+{
+  "proyecto": {
+    "nombre": "Infinita Mente",
+    "tagline": "Mentes Tranquilas, Futuros Brillantes",
+    "descripcion": "Proyecto de salud emocional de niños para niños",
+    "objetivo": "Queremos un mundo en donde todos los niños tengan acceso a herramientas de salud emocional para mejorar su vida y la de sus comunidades."
+  },
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Juego de Cartas",
+      "descripcion": "Técnicas de mindfulness para niños",
+      "precio": 23,
+      "moneda": "USD",
+      "imagen": "juego-cartas.jpg",
+      "categoria": "juegos"
+    },
+    {
+      "id": 2,
+      "nombre": "Almohada",
+      "descripcion": "Cojín de emociones para relajación",
+      "precio": 17,
+      "moneda": "USD",
+      "imagen": "almohada-emociones.jpg",
+      "categoria": "relajacion"
+    },
+    {
+      "id": 3,
+      "nombre": "Posters",
+      "descripcion": "Set de 3 posters educativos",
+      "precio": 7,
+      "moneda": "USD",
+      "imagen": "posters-set.jpg",
+      "categoria": "educativo"
+    },
+    {
+      "id": 4,
+      "nombre": "Cuadros de Pared",
+      "descripcion": "Decoración consciente para el hogar",
+      "precio": 23,
+      "moneda": "USD",
+      "imagen": "cuadros-pared.jpg",
+      "categoria": "decoracion"
+    }
+  ],
+  "testimonios": [
+    {
+      "id": 1,
+      "texto": "Antes cuando me enojaba gritaba, ahora a veces recuerdo respirar primero y se me pasa un poco",
+      "autor": "Niña de 10 años",
+      "fecha": "2024-08-15"
+    },
+    {
+      "id": 2,
+      "texto": "Se siente bien, estoy más contento al terminar el taller de Infinita mente",
+      "autor": "Niño de 8 años",
+      "fecha": "2024-08-20"
+    },
+    {
+      "id": 3,
+      "texto": "Mi hija ahora puede expresar mejor sus emociones y se siente más tranquila",
+      "autor": "Madre de familia",
+      "fecha": "2024-09-01"
+    },
+    {
+      "id": 4,
+      "texto": "Los talleres han transformado el ambiente en nuestra escuela",
+      "autor": "Maestra de primaria",
+      "fecha": "2024-09-05"
+    }
+  ],
+  "eventos": [
+    {
+      "id": 1,
+      "titulo": "Taller en Escuela Primaria",
+      "descripcion": "Realizamos un taller de mindfulness con 50 niños de primaria, enseñando técnicas de respiración y relajación.",
+      "fecha": "2024-09-15",
+      "ubicacion": "Escuela Primaria San Juan",
+      "participantes": 50
+    },
+    {
+      "id": 2,
+      "titulo": "Donación a Orfanato",
+      "descripcion": "Entregamos 30 kits de mindfulness a niños en situación vulnerable, llevando herramientas de calma.",
+      "fecha": "2024-09-10",
+      "ubicacion": "Orfanato San José",
+      "participantes": 30
+    },
+    {
+      "id": 3,
+      "titulo": "Nuevo Producto",
+      "descripcion": "Lanzamos nuestras nuevas tarjetas de emociones con técnicas de mindfulness especialmente diseñadas para niños.",
+      "fecha": "2024-09-05",
+      "ubicacion": "Online",
+      "participantes": 0
+    },
+    {
+      "id": 4,
+      "titulo": "Taller para Padres",
+      "descripcion": "Capacitamos a 25 padres de familia en técnicas de mindfulness para aplicar en casa con sus hijos.",
+      "fecha": "2024-08-28",
+      "ubicacion": "Centro Comunitario",
+      "participantes": 25
+    }
+  ],
+  "faq": [
+    {
+      "id": 1,
+      "pregunta": "¿Qué es el mindfulness y cómo puede ayudarle realmente a mi hijo?",
+      "respuesta": "Es la capacidad de prestar atención al momento presente, con curiosidad y sin juzgar. A los niños les ayuda a: Identificar y regular sus emociones (ej: manejar la frustración por perder un juego), Mejorar su concentración en tareas escolares y actividades cotidianas, Desarrollar empatía y habilidades sociales al aprender a calmarse y escuchar a los demás."
+    },
+    {
+      "id": 2,
+      "pregunta": "Mi hijo es muy inquieto, ¿realmente podría funcionar con él?",
+      "respuesta": "¡Absolutamente! El mindfulness para niños no exige que estén quietos o en silencio. Usamos actividades en movimiento, con imaginación adaptadas a su energía y edad. El objetivo es ayudarlos a encontrar calma dentro del movimiento, no a pesar de él."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cómo se integra este proyecto en la casa o escuela?",
+      "respuesta": "En escuela: como pausas activas de 5 minutos en algún momento del día. En casa: a través de juegos o rituales simples que las familias pueden practicar juntos o los niños más grandes que ya saben leer por su cuenta."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Se ven resultados a corto plazo? ¿Cómo puedo medir el progreso?",
+      "respuesta": "Sí, muchos niños muestran cambios observables en semanas. Por ejemplo: Menos reactividad (se recuperan más pronto de un berrinche o decepción), Mejor comunicación (empiezan a usar palabras para expresar cómo se sienten), Mayor enfoque (son capaces de permanecer más tiempo en la misma actividad). El progreso se mide por medio de la observación o de un reporte simple de los padres o maestros."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Los productos son seguros para niños pequeños?",
+      "respuesta": "Todos nuestros productos están diseñados específicamente para niños y cumplen con estándares de seguridad. Utilizamos materiales no tóxicos y diseños que promueven el uso seguro y supervisado por adultos."
+    }
+  ],
+  "contacto": {
+    "email": "contacto@infinitamente.org",
+    "telefono": "+52 (55) 1234-5678",
+    "ubicacion": "Ciudad de México, México",
+    "redes_sociales": {
+      "facebook": "https://facebook.com/infinitamente",
+      "instagram": "https://instagram.com/infinitamente",
+      "twitter": "https://twitter.com/infinitamente",
+      "youtube": "https://youtube.com/infinitamente"
+    }
+  },
+  "estadisticas": {
+    "ninos_atendidos": 500,
+    "talleres_realizados": 25,
+    "escuelas_participantes": 15,
+    "voluntarios_activos": 30,
+    "productos_donados": 200
+  }
+}

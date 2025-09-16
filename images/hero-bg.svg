@@ -1,0 +1,33 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/>
+    </pattern>
+  </defs>
+  
+  <!-- Fondo con gradiente -->
+  <rect width="1920" height="1080" fill="url(#heroGradient)"/>
+  
+  <!-- Patrón de puntos -->
+  <rect width="1920" height="1080" fill="url(#dots)"/>
+  
+  <!-- Formas geométricas decorativas -->
+  <circle cx="200" cy="200" r="100" fill="rgba(255,255,255,0.05)" opacity="0.8"/>
+  <circle cx="1720" cy="300" r="80" fill="rgba(255,255,255,0.03)" opacity="0.6"/>
+  <circle cx="300" cy="800" r="120" fill="rgba(255,255,255,0.04)" opacity="0.7"/>
+  
+  <!-- Líneas decorativas -->
+  <line x1="0" y1="400" x2="400" y2="400" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+  <line x1="1520" y1="600" x2="1920" y2="600" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+  
+  <!-- Estrellas decorativas -->
+  <g fill="rgba(255,255,255,0.2)">
+    <polygon points="150,150 160,180 190,180 165,200 175,230 150,210 125,230 135,200 110,180 140,180"/>
+    <polygon points="800,100 810,130 840,130 815,150 825,180 800,160 775,180 785,150 760,130 790,130"/>
+    <polygon points="1200,800 1210,830 1240,830 1215,850 1225,880 1200,860 1175,880 1185,850 1160,830 1190,830"/>
+  </g>
+</svg>

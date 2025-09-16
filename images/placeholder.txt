@@ -1,0 +1,36 @@
+# Carpeta de Imágenes
+
+Esta carpeta contiene las imágenes utilizadas en el sitio web de Infinita Mente.
+
+## Imágenes Recomendadas
+
+### Hero Section
+- hero-bg.jpg (1920x1080) - Fondo principal
+- children-meditation.jpg (800x600) - Niños practicando mindfulness
+
+### Productos
+- juego-cartas.jpg (400x400) - Juego de cartas de mindfulness
+- almohada-emociones.jpg (400x400) - Cojín de emociones
+- posters-set.jpg (400x400) - Set de posters educativos
+- cuadros-pared.jpg (400x400) - Cuadros decorativos
+
+### Secciones
+- nosotros-team.jpg (800x600) - Equipo del proyecto
+- taller-ninos.jpg (800x600) - Taller con niños
+- comunidad.jpg (800x600) - Comunidad participando
+
+### Iconos y Elementos
+- logo-infinitamente.png (200x200) - Logo del proyecto
+- favicon.ico (32x32) - Favicon del sitio
+
+## Optimización de Imágenes
+
+Para mejor rendimiento:
+- Usar formato WebP cuando sea posible
+- Comprimir imágenes sin perder calidad
+- Redimensionar según el uso en el sitio
+- Implementar lazy loading
+
+## Créditos
+
+Asegúrate de tener los derechos de uso de todas las imágenes o usar imágenes libres de derechos.
