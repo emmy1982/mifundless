@@ -7,7 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
         easing: 'ease-in-out',
         once: true,
         offset: 100,
-        delay: 0
+        delay: 0,
+        disable: function() {
+            // Deshabilitar AOS en pantallas muy pequeñas para evitar problemas
+            return window.innerWidth < 480;
+        }
     });
     
     // Inicializar todas las funcionalidades
