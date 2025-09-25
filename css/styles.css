@@ -418,6 +418,7 @@ h5{
 .testimonials-section{
     width: 80%;
     min-height: auto;
+    max-width: 1400px;
     position: relative;
     overflow: hidden;
     padding: 4rem 0;
@@ -433,11 +434,11 @@ h5{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image:  url('../images/fondoGrey.png');
+    background-image:  url('../images/back_yellow.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.4;
+    opacity: 0.6;
     z-index: -1;
 }
 
@@ -475,7 +476,7 @@ h5{
 }
 
 .testimonial-text{
-    background-image: url('../images/fondorondo_1.png');
+    /* background-image: url('../images/fondorondo_1.png'); */
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -644,7 +645,7 @@ h5{
     background-image: none !important;
     color: var(--primary-color) !important;
     font-size: 6rem;
-    font-weight: bold;
+    /* font-weight: ; */
 }
 
 #eventosCarousel .carousel-control-prev-icon::before {
@@ -1222,6 +1223,11 @@ footer{
         margin-bottom: 18px!important;
     }
 
+    .card-img-top{
+        width: 100%!important;
+        margin: 0 auto!important;
+    }
+
     .bg-voluntario{
         width: 90%;
         margin: 0 auto;
@@ -1316,6 +1322,60 @@ footer{
     background: #357abd;
 }
 
+/* Botón de WhatsApp */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    text-decoration: none;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.whatsapp-btn i {
+    transition: transform 0.3s ease;
+    display: block;
+    color: white !important;
+}
+
+.whatsapp-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Animación de pulso para WhatsApp */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
 /* Botón de Subir */
 .scroll-to-top {
     position: fixed;
@@ -1334,10 +1394,10 @@ footer{
     font-size: 1.2rem;
     box-shadow: 0 4px 20px rgba(245, 166, 35, 0.3);
     transition: all 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(100px);
-    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    z-index: 9999;
 }
 
 .scroll-to-top:hover {
@@ -1354,14 +1414,25 @@ footer{
 
 .scroll-to-top i {
     transition: transform 0.3s ease;
+    display: block;
+    color: white !important;
+    font-size: 1.2rem;
 }
 
 .scroll-to-top:hover i {
     transform: translateY(-2px);
 }
 
-/* Responsive para botón de subir */
+/* Responsive para botones flotantes */
 @media (max-width: 768px) {
+    .whatsapp-btn {
+        bottom: 20px;
+        left: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+    }
+    
     .scroll-to-top {
         bottom: 20px;
         right: 20px;
@@ -1373,7 +1444,7 @@ footer{
 
 /* Print styles */
 @media print {
-    .navbar, .btn, .floating-elements, .scroll-to-top {
+    .navbar, .btn, .floating-elements, .scroll-to-top, .whatsapp-btn {
         display: none !important;
     }
     
