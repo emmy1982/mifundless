@@ -1129,13 +1129,17 @@ footer{
 }
 
 .bg-card-info{
-    background-color: #ffc800a4;
+    background-color:#FFF3CD;
+    transition: all 0.3s ease;
 }
 
 .bg-card-info:hover{
-    background-color: #ffc800;
+    background-color: #ffc80062;
 }
 
+.p-color-text{
+    color: var(--text-dark) !important;
+}
 
 
 
