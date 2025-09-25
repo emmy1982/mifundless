@@ -325,6 +325,9 @@ h5{
     opacity: 0.3;
     z-index: -1;
 }
+.card-img-top{
+    filter: drop-shadow(10px 20px 0px var(--primary-color));
+}
 
 /* Cómo Funciona Section */
 .como-funciona-section{
@@ -349,7 +352,10 @@ h5{
     opacity: 0.4;
     z-index: -1;
 }
-.border-radius{
+/* .border-radius{
+    
+} */
+.card{
     border: none!important;
     background: none!important;
 }
@@ -357,8 +363,7 @@ h5{
 .border-top{
     margin: 0 auto;
     width: 80%;
-   filter: drop-shadow(10px 20px 0px var(--primary-color));
-   z-index: -1;
+   
 }
 
 .card-body-eventos{
@@ -411,11 +416,14 @@ h5{
 }
 
 .testimonials-section{
-    width: 100%;
+    width: 80%;
     min-height: auto;
     position: relative;
     overflow: hidden;
     padding: 4rem 0;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.229)!important;
 }
 
 .testimonials-section::before {
@@ -425,11 +433,11 @@ h5{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image:  url('../images/back-1.jpg');
+    background-image:  url('../images/fondoGrey.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.1;
+    opacity: 0.4;
     z-index: -1;
 }
 
@@ -786,6 +794,19 @@ h5{
     border: none;
 }
 
+/* Voluntario Section */
+
+.bg-voluntario{
+    background-image: url('../images/fondoBlue.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+.tx{
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.547);
+}
 /* Tienda Section Styles */
 
 
@@ -1055,14 +1076,14 @@ h5{
 /* Footer */
 
 footer{
-    background: var(--text-dark);
-}
+    background-image: url(../images/fondoBlue.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} 
 
 .footer-logo{
-    font-family: 'Annie Use Your Telescope', cursive;
-    font-size: 2rem;
-    font-weight: 700;
-    color: white !important;
+   width: 250px;
 }
 .footer-logo:hover{
     color: var(--primary-color) !important;
@@ -1199,6 +1220,24 @@ footer{
         gap: 10px!important;
         margin-top: 0!important;
         margin-bottom: 18px!important;
+    }
+
+    .bg-voluntario{
+        width: 90%;
+        margin: 0 auto;
+        padding: 40px 10px!important;
+    }
+
+    .bg-voluntario h2{
+        font-size: 2.8rem!important;
+    }
+
+    .bg-voluntario p{
+        font-size: 1.4rem!important;
+    }
+
+    .testimonials-section{
+        width: 90%;
     }
 }
 
