@@ -272,6 +272,7 @@ h5{
     filter: drop-shadow( 20px 20px 0px var(--primary-color));
 }
 
+
 .goals-info{
     font-size: 1.2rem;
     font-weight: 500;
@@ -1235,6 +1236,12 @@ footer{
         width: 100%!important;
        
         margin: 0 auto 60px auto!important;
+    }
+
+    .yoga-img-sabermas{
+        width: 90%!important;
+        margin: 0 auto;
+        filter: drop-shadow( 20px 20px 0px var(--primary-color));
     }
     
     .img-hero{
