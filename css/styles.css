@@ -1,15 +1,15 @@
 /* Estilos personalizados para Infinita Mente */
 
 :root {
-    --primary-color: #ed1e6f;
-    --secondary-color: #fed260;
+    --primary-color: #D0006F;
+    --secondary-color: #FFE066;
     --accent-color: #ed1e6f ;
+    --yellow-color: #FFC600;
+    --red-color: #FF66A3;
     /* --text-dark: #2780be; */
-    --text-dark: #206ba1;
+    --text-dark: #1D4F91;
     --text-light: rgba(57, 73, 98, 0.485);
     --bg-light: #ff910020;
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --shadow-light: 0 2px 10px rgba(0,0,0,0.1);
     --shadow-medium: 0 5px 20px rgba(0,0,0,0.15);
     --shadow-heavy: 0 10px 30px rgba(0,0,0,0.2);
@@ -61,6 +61,18 @@ body {
     height: 100%;
     /* background: linear-gradient(135deg, rgba(74, 144, 226, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%); */
     background:#fed160c1;
+    z-index: 2;
+}
+.hero-overlay-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:var(--secondary-color);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: 2;
 }
 
@@ -284,12 +296,10 @@ h5{
 
 /* Eventos y Noticias */
 .eventos-noticias{
-    background-image: linear-gradient(#f5a52330, #f5a52333), url('../images/back-1.jpg') ;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding-bottom: 90px!important;
-    
 }
 
 /* Nueva sección de eventos y noticias con opacidad */
@@ -339,7 +349,6 @@ h5{
     opacity: 0.4;
     z-index: -1;
 }
-
 .border-radius{
     border: none!important;
     background: none!important;
@@ -354,13 +363,19 @@ h5{
 
 .card-body-eventos{
     margin: 0 auto!important;
-    background: #fbdbb4!important;
+    background-image:  linear-gradient(rgba(245, 35, 35, 0.3), rgba(245, 91, 91, 0.3)), url('../images/back_red.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 20px!important;
     margin-top: 40px!important;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.185);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.266);
     margin-bottom: 20px!important;
     padding: 30px!important;
     text-align: center;
+}
+.card-body-eventos h5{
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.862);
 }
 
 
@@ -410,11 +425,11 @@ h5{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(245, 165, 35, 0.3), rgba(245, 165, 35, 0.3)), url('../images/back-1.jpg');
+    background-image:  url('../images/back-1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.4;
+    opacity: 0.1;
     z-index: -1;
 }
 
@@ -626,12 +641,12 @@ h5{
 
 #eventosCarousel .carousel-control-prev-icon::before {
     content: "‹";
-    color: var(--primary-color) !important;
+    color: var(--text-dark) !important;
 }
 
 #eventosCarousel .carousel-control-next-icon::before {
     content: "›";
-    color: var(--primary-color) !important;
+    color: var(--text-dark) !important;
 }
 
 /* Responsive adjustments for testimonials */
@@ -701,7 +716,7 @@ h5{
 
 /* Step Numbers */
 .step-number{
-   background-image: url('../images/fondoredondo.png');
+   background-image: url('../images/fondorondo_1.png');
    background-size: contain;
    background-position: center;
    background-repeat: no-repeat;
@@ -716,11 +731,14 @@ h5{
     width: 40px;
     height: auto;
     transition: transform 0.3s ease;
+    filter: drop-shadow(1px 2px 3px black) brightness(6);
+   
 }
 
 .uno{
     width: 20px!important;
     transition: transform 0.3s ease;
+    filter: drop-shadow(10px 20px 0px var(--red-color));
 }
 
 .uno:hover {
@@ -771,8 +789,8 @@ h5{
 /* Tienda Section Styles */
 
 
-.card-title{
-    color: var(--text-dark) !important;
+.card-title-event{
+    color: white !important;
 }
 
 .product-card-wrapper {
