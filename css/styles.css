@@ -1280,6 +1280,14 @@ footer{
     .testimonials-section{
         width: 90%;
     }
+
+    /* Saber Más */
+    .h1-sabermas{
+        font-size: 3rem!important;
+    }
+    .h3-sabermas{
+        font-size: 2.5rem!important;
+    }
 }
 
 @media (max-width: 576px) {
