@@ -1325,6 +1325,13 @@ footer{
     .h3-sabermas{
         font-size: 2.5rem!important;
     }
+
+    .footer-logo{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1534,13 +1541,16 @@ footer{
     }
 }
 
-/* Estilos para página de contacto/compra */
+/*****************************Estilos para página de contacto/compra *****************************/
 .hero-section-contacto {
     min-height: 60vh;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
+    max-width: 95%;
+    margin: 0 auto;
+    border-radius: 20px;
 }
 
 .hero-section-contacto::before {
@@ -1564,7 +1574,6 @@ footer{
 
 .hero-section-contacto h1 {
     color: var(--text-dark) !important;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
     font-weight: 700;
 }
 
@@ -1731,6 +1740,12 @@ footer{
     .hero-section-contacto {
         min-height: 300px;
         padding: 2rem 0;
+    }
+
+    .hero-section-contacto h1 {
+        font-size: 3rem;
+        color: var(--text-dark) !important;
+        font-weight: 700;
     }
     
     .hero-section-contacto ~ section .card-body {

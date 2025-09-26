@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar todas las funcionalidades
     initSmoothScrolling();
+    initNavbarCloseOnClick();
     initNavbarScroll();
     initAnimationsOnScroll();
     initCarouselControls();
@@ -44,9 +45,55 @@ function initSmoothScrolling() {
                     top: offsetTop,
                     behavior: 'smooth'
                 });
+                
+                // Cerrar el menú móvil después del scroll
+                setTimeout(() => {
+                    closeMobileMenu();
+                }, 100);
             }
         });
     });
+}
+
+// Cerrar menú móvil al hacer clic en enlaces del navbar
+function initNavbarCloseOnClick() {
+    const navbarLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navbarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Cerrar el menú móvil inmediatamente
+            closeMobileMenu();
+        });
+    });
+}
+
+// Función para cerrar el menú móvil
+function closeMobileMenu() {
+    const navbarCollapse = document.getElementById('navbarNav');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    
+    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        // Método directo: remover la clase show
+        navbarCollapse.classList.remove('show');
+        
+        // Actualizar el estado del botón toggler
+        if (navbarToggler) {
+            navbarToggler.setAttribute('aria-expanded', 'false');
+            navbarToggler.classList.add('collapsed');
+        }
+        
+        // También intentar con Bootstrap si está disponible
+        try {
+            if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+            }
+        } catch (e) {
+            // Bootstrap no disponible, usando método directo
+        }
+    }
 }
 
 // Efectos de navbar al hacer scroll
