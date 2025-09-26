@@ -310,6 +310,10 @@ h5{
     z-index: -1;
 }
 .card-img-top{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
     filter: drop-shadow(10px 20px 0px var(--primary-color));
 }
 
