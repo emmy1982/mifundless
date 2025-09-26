@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto para Compra - Infinita Mente</title>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Barrio&family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm mt-3 mx-auto rounded-3 pt-2 pb-2">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary logo" href="../index.html">
+                <img src="../images/logo.png" alt="logo" class="img-fluid">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="../index.html#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="../index.html#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="../index.html#ofrecemos">Qué Ofrecemos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="../index.html#tienda">Tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="../index.html#voluntario">Únete</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="../index.html#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section-contacto py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-duration="600">
+                    <h1 class="display-4 fw-bold text-primary mb-3 font">Solicitar Producto</h1>
+                    <p class="lead mb-4">
+                        Completa el formulario y nos pondremos en contacto contigo para coordinar tu compra
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0 rounded-4" data-aos="fade-up" data-aos-duration="600">
+                        <div class="card-body p-5">
+                            <form id="contactoForm" action="../php/enviar_contacto.php" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nombre" class="form-label fw-semibold">Nombre Completo *</label>
+                                        <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label fw-semibold">Correo Electrónico *</label>
+                                        <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="telefono" class="form-label fw-semibold">Teléfono *</label>
+                                        <input type="tel" class="form-control form-control-lg" id="telefono" name="telefono" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="ciudad" class="form-label fw-semibold">Ciudad/País *</label>
+                                        <input type="text" class="form-control form-control-lg" id="ciudad" name="ciudad" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="producto" class="form-label fw-semibold">Producto de Interés *</label>
+                                    <select class="form-select form-select-lg" id="producto" name="producto" required>
+                                        <option value="">Selecciona un producto</option>
+                                        <option value="Kit Mindfulness para Niños - $23 USD">Kit Mindfulness para Niños - $23 USD</option>
+                                        <option value="Cartas de Emociones - $17 USD">Cartas de Emociones - $17 USD</option>
+                                        <option value="Guía de Ejercicios - $7 USD">Guía de Ejercicios - $7 USD</option>
+                                        <option value="Kit Completo de Bienestar - $23 USD">Kit Completo de Bienestar - $23 USD</option>
+                                        <option value="Múltiples productos">Múltiples productos</option>
+                                        <option value="Otro">Otro (especificar en mensaje)</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="cantidad" class="form-label fw-semibold">Cantidad</label>
+                                    <select class="form-select form-select-lg" id="cantidad" name="cantidad">
+                                        <option value="1">1 unidad</option>
+                                        <option value="2">2 unidades</option>
+                                        <option value="3">3 unidades</option>
+                                        <option value="4">4 unidades</option>
+                                        <option value="5">5 unidades</option>
+                                        <option value="mas">Más de 5 unidades</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="preferenciaContacto" class="form-label fw-semibold">Preferencia de Contacto</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="preferenciaContacto" id="emailPref" value="email" checked>
+                                        <label class="form-check-label" for="emailPref">
+                                            Correo electrónico
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="preferenciaContacto" id="telefonoPref" value="telefono">
+                                        <label class="form-check-label" for="telefonoPref">
+                                            Llamada telefónica
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="preferenciaContacto" id="whatsappPref" value="whatsapp">
+                                        <label class="form-check-label" for="whatsappPref">
+                                            WhatsApp
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="mensaje" class="form-label fw-semibold">Mensaje Adicional</label>
+                                    <textarea class="form-control form-control-lg" id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos más sobre tu solicitud, preguntas específicas, o cualquier información adicional..."></textarea>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" value="si">
+                                        <label class="form-check-label" for="newsletter">
+                                            Quiero recibir información sobre nuevos productos y promociones
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                                        <i class="fas fa-paper-plane me-2"></i>Enviar Solicitud
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Información Adicional -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h3 class="fw-bold text-primary mb-4 font">¿Qué sucede después?</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                            <div class="text-center">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-paper-plane fa-lg"></i>
+                                </div>
+                                <h5 class="fw-semibold">1. Envías tu solicitud</h5>
+                                <p class="text-muted">Completa el formulario con tus datos y el producto que deseas</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                            <div class="text-center">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-phone fa-lg"></i>
+                                </div>
+                                <h5 class="fw-semibold">2. Te contactamos</h5>
+                                <p class="text-muted">Nos pondremos en contacto contigo en menos de 24 horas</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+                            <div class="text-center">
+                                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-shipping-fast fa-lg"></i>
+                                </div>
+                                <h5 class="fw-semibold">3. Coordinamos envío</h5>
+                                <p class="text-muted">Acordamos el método de pago y envío más conveniente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Footer -->
+    <footer class="text-white py-4">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="footer-logo mb-3 font">
+                        <img src="../images/logo.png" alt="logo" class="img-fluid">
+                    </div>
+                    <p class="mb-3 w-75">
+                        Proyecto de salud emocional para niños que promueve el mindfulness y la conexión emocional.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-light mb-3 border-bottom border-white pb-2 w-25">Enlaces Rápidos</h6>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li><a href="../index.html#inicio" class="text-white-50">Inicio</a></li>
+                                <li><a href="../index.html#nosotros" class="text-white-50">Nosotros</a></li>
+                                <li><a href="../index.html#tienda" class="text-white-50">Tienda</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="list-unstyled">
+                                <li><a href="../index.html#voluntario" class="text-white-50">Voluntariado</a></li>
+                                <li><a href="../index.html#contacto" class="text-white-50">Contacto</a></li>
+                                <li><a href="politica-privacidad.html" class="text-white-50">Política de Privacidad</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-2 text-white">
+                        <small>
+                            <strong>Disclaimer:</strong> Los ejercicios y actividades son responsabilidad de quienes los usan y no sustituyen la atención terapéutica profesional.
+                        </small>
+                    </p>
+                    <p class="mb-0 text-white">
+                        <small>&copy; 2025 Infinita Mente. Todos los derechos reservados.</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        // Inicializar AOS
+        AOS.init();
+
+        // Manejo del formulario
+        document.getElementById('contactoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            
+            // Enviar datos al servidor
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Mostrar mensaje de éxito
+                    showMessage('success', data.message);
+                    this.reset();
+                } else {
+                    // Mostrar errores
+                    if (data.errors) {
+                        showMessage('error', data.errors.join('<br>'));
+                    } else {
+                        showMessage('error', data.message);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('error', 'Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo.');
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+        
+        // Función para mostrar mensajes
+        function showMessage(type, message) {
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+            
+            const alertHtml = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    <i class="${icon} me-2"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            
+            // Insertar mensaje antes del formulario
+            const form = document.getElementById('contactoForm');
+            form.insertAdjacentHTML('beforebegin', alertHtml);
+            
+            // Auto-ocultar después de 5 segundos
+            setTimeout(() => {
+                const alert = document.querySelector('.alert');
+                if (alert) {
+                    alert.remove();
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

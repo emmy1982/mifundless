@@ -370,9 +370,9 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$23 USD</div>
                                 </div>
-                                <button class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
                                    Comprar Ahora
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -391,9 +391,9 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$17 USD</div>
                                 </div>
-                                <button class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
                                    Comprar Ahora
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -412,9 +412,9 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$7 USD</div>
                                 </div>
-                                <button class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
                                    Comprar Ahora
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -433,9 +433,9 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$23 USD</div>
                                 </div>
-                                <button class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
                                    Comprar Ahora
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -750,12 +750,12 @@
                 <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                     <div class="newsletter-form">
                         <h4 class=" mb-3">Suscríbete a Nuestro Newsletter</h4>
-                        <form>
+                        <form id="newsletterForm" action="php/newsletter.php" method="POST">
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Tu nombre" required>
+                                <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
                             </div>
                             <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Tu email" required>
+                                <input type="email" name="email" class="form-control" placeholder="Tu email" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Suscribirse</button>
                         </form>

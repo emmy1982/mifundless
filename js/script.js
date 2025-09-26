@@ -402,11 +402,91 @@ document.addEventListener('DOMContentLoaded', function() {
     initLazyLoading();
 });
 
+// Manejo del formulario de newsletter
+function initNewsletterForm() {
+    const newsletterForm = document.getElementById('newsletterForm');
+    
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Suscribiendo...';
+            submitBtn.disabled = true;
+            
+            // Enviar datos al servidor
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNewsletterMessage('success', data.message);
+                    this.reset();
+                } else {
+                    showNewsletterMessage('error', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNewsletterMessage('error', 'Hubo un error al procesar tu suscripción. Por favor, inténtalo de nuevo.');
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    }
+}
+
+// Función para mostrar mensajes del newsletter
+function showNewsletterMessage(type, message) {
+    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+    
+    const alertHtml = `
+        <div class="alert ${alertClass} alert-dismissible fade show mt-3" role="alert">
+            <i class="${icon} me-2"></i>
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    
+    // Insertar mensaje después del formulario
+    const form = document.getElementById('newsletterForm');
+    const existingAlert = form.parentNode.querySelector('.alert');
+    
+    if (existingAlert) {
+        existingAlert.remove();
+    }
+    
+    form.insertAdjacentHTML('afterend', alertHtml);
+    
+    // Auto-ocultar después de 5 segundos
+    setTimeout(() => {
+        const alert = form.parentNode.querySelector('.alert');
+        if (alert) {
+            alert.remove();
+        }
+    }, 5000);
+}
+
+// Inicializar formulario de newsletter cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    initNewsletterForm();
+});
+
 // Exportar funciones para uso global si es necesario
 window.InfinitaMente = {
     showSuccessMessage,
     showLoadingState,
     toggleElement,
     copyToClipboard,
-    animateCounters
+    animateCounters,
+    showNewsletterMessage
 };
