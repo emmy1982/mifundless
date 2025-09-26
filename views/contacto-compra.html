@@ -283,53 +283,17 @@
     <!-- <script src="../config/formulario-config.js"></script> -->
     <script>
         // Inicializar AOS
-        AOS.init();
-
-        // Manejo del formulario - Simplificado para Formspree
-        document.getElementById('contactoForm').addEventListener('submit', function(e) {
-            // No usar preventDefault() - dejar que Formspree maneje el envío
-            console.log('Formulario enviado a Formspree');
-        });
-        
-        // Función para limpiar mensajes anteriores
-        function clearMessages() {
-            const existingAlerts = document.querySelectorAll('.alert');
-            existingAlerts.forEach(alert => alert.remove());
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false
+            });
         }
         
-        // Función para mostrar mensajes
-        function showMessage(type, message) {
-            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-            const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
-            
-            const alertHtml = `
-                <div class="alert ${alertClass} alert-dismissible fade show" role="alert" style="margin-bottom: 2rem;">
-                    <i class="${icon} me-2"></i>
-                    <strong>${type === 'success' ? '¡Éxito!' : 'Error:'}</strong> ${message}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            `;
-            
-            // Insertar mensaje antes del formulario
-            const form = document.getElementById('contactoForm');
-            form.insertAdjacentHTML('beforebegin', alertHtml);
-            
-            // Scroll suave hacia el mensaje
-            const alert = document.querySelector('.alert');
-            if (alert) {
-                alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            
-            // Auto-ocultar después de 8 segundos para mensajes de éxito
-            if (type === 'success') {
-                setTimeout(() => {
-                    const alert = document.querySelector('.alert');
-                    if (alert) {
-                        alert.remove();
-                    }
-                }, 8000);
-            }
-        }
+        // Formulario de compras - Formspree maneja todo automáticamente
+        // No agregar event listeners - Formspree maneja el formulario
     </script>
 </body>
 </html>

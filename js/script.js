@@ -404,15 +404,9 @@ function initScrollToTop() {
     });
 }
 
-// Manejo del formulario de newsletter con Formspree
+// Formulario de newsletter - Formspree maneja todo automáticamente
 function initNewsletterForm() {
-    console.log('Inicializando formulario de newsletter...');
-    const newsletterForm = document.getElementById('newsletterForm');
-    
-    if (newsletterForm) {
-        console.log('Formulario de newsletter encontrado');
-        // No agregar event listeners - dejar que Formspree maneje todo
-    }
+    // No hacer nada - Formspree maneja el formulario automáticamente
 }
 
 // Función para mostrar mensajes del newsletter
@@ -447,15 +441,9 @@ function showNewsletterMessage(type, message) {
     }, 5000);
 }
 
-// Manejo del formulario de voluntarios con Formspree
+// Formulario de voluntarios - Formspree maneja todo automáticamente
 function initVoluntarioForm() {
-    console.log('Inicializando formulario de voluntarios...');
-    const voluntarioForm = document.getElementById('voluntarioForm');
-    
-    if (voluntarioForm) {
-        console.log('Formulario de voluntarios encontrado');
-        // No agregar event listeners - dejar que Formspree maneje todo
-    }
+    // No hacer nada - Formspree maneja el formulario automáticamente
 }
 
 // Función para mostrar mensajes del formulario de voluntarios
