@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Simple - Formspree</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .success { color: green; margin-top: 10px; }
+        .error { color: red; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Test Simple de Formspree</h1>
+    
+    <h2>Newsletter</h2>
+    <form action="https://formspree.io/f/xwprpdko" method="POST">
+        <div class="form-group">
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Tu email" required>
+        </div>
+        <button type="submit">Enviar Newsletter</button>
+    </form>
+    
+    <h2>Voluntarios</h2>
+    <form action="https://formspree.io/f/manpnzga" method="POST">
+        <div class="form-group">
+            <input type="text" name="nombre" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="tel" name="telefono" placeholder="Teléfono" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="organizacion" placeholder="Organización/Escuela">
+        </div>
+        <div class="form-group">
+            <textarea name="motivacion" rows="3" placeholder="¿Por qué quieres ser voluntario?" required></textarea>
+        </div>
+        <button type="submit">Enviar Voluntario</button>
+    </form>
+    
+    <h2>Compras</h2>
+    <form action="https://formspree.io/f/movkvzga" method="POST">
+        <div class="form-group">
+            <input type="text" name="nombre" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="tel" name="telefono" placeholder="Teléfono" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="ciudad" placeholder="Ciudad/País" required>
+        </div>
+        <div class="form-group">
+            <select name="producto" required>
+                <option value="">Selecciona un producto</option>
+                <option value="Kit Mindfulness para Niños - $23 USD">Kit Mindfulness para Niños - $23 USD</option>
+                <option value="Cartas de Emociones - $17 USD">Cartas de Emociones - $17 USD</option>
+                <option value="Guía de Ejercicios - $7 USD">Guía de Ejercicios - $7 USD</option>
+            </select>
+        </div>
+        <button type="submit">Enviar Compra</button>
+    </form>
+    
+    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 4px;">
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Llena cualquiera de los formularios</li>
+            <li>Haz clic en "Enviar"</li>
+            <li>Deberías ver una página de confirmación de Formspree</li>
+            <li>Revisa tu email emmyjose82@hotmail.com</li>
+        </ol>
+    </div>
+</body>
+</html>

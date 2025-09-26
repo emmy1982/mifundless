@@ -411,24 +411,7 @@ function initNewsletterForm() {
     
     if (newsletterForm) {
         console.log('Formulario de newsletter encontrado');
-        newsletterForm.addEventListener('submit', function(e) {
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Suscribiendo...';
-            submitBtn.disabled = true;
-            
-            // Permitir que Formspree maneje el envío
-            // No usar preventDefault() para que Formspree funcione correctamente
-            
-            // Mostrar mensaje de éxito después de un breve delay
-            setTimeout(() => {
-                showNewsletterMessage('success', '¡Gracias por suscribirte! Te mantendremos informado sobre nuestros productos y promociones.');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1000);
-        });
+        // No agregar event listeners - dejar que Formspree maneje todo
     }
 }
 
@@ -471,33 +454,7 @@ function initVoluntarioForm() {
     
     if (voluntarioForm) {
         console.log('Formulario de voluntarios encontrado');
-        voluntarioForm.addEventListener('submit', function(e) {
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-            submitBtn.disabled = true;
-            
-            // Permitir que Formspree maneje el envío
-            // No usar preventDefault() para que Formspree funcione correctamente
-            
-            // Mostrar mensaje de éxito después de un breve delay
-            setTimeout(() => {
-                showVoluntarioMessage('success', '¡Gracias por tu interés en ser voluntario! Nos pondremos en contacto contigo pronto.');
-                this.reset();
-                
-                // Cerrar el modal después de 2 segundos
-                setTimeout(() => {
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('voluntarioModal'));
-                    if (modal) {
-                        modal.hide();
-                    }
-                }, 2000);
-                
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1000);
-        });
+        // No agregar event listeners - dejar que Formspree maneje todo
     }
 }
 

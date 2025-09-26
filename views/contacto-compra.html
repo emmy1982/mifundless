@@ -72,6 +72,8 @@
                     <div class="card shadow-lg border-0 rounded-4" data-aos="fade-up" data-aos-duration="600">
                         <div class="card-body p-5">
                             <form id="contactoForm" action="https://formspree.io/f/movkvzga" method="POST">
+                                <input type="hidden" name="_subject" value="Nueva solicitud de compra - Infinita Mente">
+                                <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nombre" class="form-label fw-semibold">Nombre Completo *</label>
@@ -283,32 +285,10 @@
         // Inicializar AOS
         AOS.init();
 
-        // Manejo del formulario
+        // Manejo del formulario - Simplificado para Formspree
         document.getElementById('contactoForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            // Limpiar mensajes anteriores
-            clearMessages();
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-            submitBtn.disabled = true;
-            
-            // Enviar datos al servidor
-            const formData = new FormData(this);
-            
-            // Permitir que Formspree maneje el envío
-            // No usar preventDefault() para que Formspree funcione correctamente
-            
-            // Mostrar mensaje de éxito después de un breve delay
-            setTimeout(() => {
-                showMessage('success', '¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1000);
+            // No usar preventDefault() - dejar que Formspree maneje el envío
+            console.log('Formulario enviado a Formspree');
         });
         
         // Función para limpiar mensajes anteriores
