@@ -370,7 +370,7 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$23 USD</div>
                                 </div>
-                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 ">
                                    Comprar Ahora
                                 </a>
                             </div>
@@ -391,7 +391,7 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$17 USD</div>
                                 </div>
-                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 ">
                                    Comprar Ahora
                                 </a>
                             </div>
@@ -412,7 +412,7 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$7 USD</div>
                                 </div>
-                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100">
                                    Comprar Ahora
                                 </a>
                             </div>
@@ -433,7 +433,7 @@
                                 <div class="price-section mb-4">
                                     <div class="price fw-bold h3 mb-1">$23 USD</div>
                                 </div>
-                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 product-btn">
+                                <a href="./views/contacto-compra.html" class="btn btn-primary btn-lg w-100 ">
                                    Comprar Ahora
                                 </a>
                             </div>
@@ -750,7 +750,7 @@
                 <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                     <div class="newsletter-form">
                         <h4 class=" mb-3">Suscríbete a Nuestro Newsletter</h4>
-                        <form id="newsletterForm" action="php/newsletter.php" method="POST">
+                        <form id="newsletterForm" action="https://formspree.io/f/mzzjzqql" method="POST">
                             <div class="mb-3">
                                 <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
                             </div>
@@ -828,32 +828,34 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="voluntarioForm" action="https://formspree.io/f/manpnzga" method="POST">
                         <div class="mb-3">
-                            <label class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" required>
+                            <label class="form-label">Nombre completo *</label>
+                            <input type="text" name="nombre" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" required>
+                            <label class="form-label">Email *</label>
+                            <input type="email" name="email" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" required>
+                            <label class="form-label">Teléfono *</label>
+                            <input type="tel" name="telefono" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Organización/Escuela</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="organizacion" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">¿Por qué quieres ser voluntario?</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <label class="form-label">¿Por qué quieres ser voluntario? *</label>
+                            <textarea name="motivacion" class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i>Enviar Solicitud
+                            </button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Enviar Solicitud</button>
                 </div>
             </div>
         </div>

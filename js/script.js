@@ -404,49 +404,30 @@ function initScrollToTop() {
     });
 }
 
-// Inicializar lazy loading si hay imágenes
-document.addEventListener('DOMContentLoaded', function() {
-    initLazyLoading();
-});
-
-// Manejo del formulario de newsletter
+// Manejo del formulario de newsletter con Formspree
 function initNewsletterForm() {
+    console.log('Inicializando formulario de newsletter...');
     const newsletterForm = document.getElementById('newsletterForm');
     
     if (newsletterForm) {
+        console.log('Formulario de newsletter encontrado');
         newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Suscribiendo...';
             submitBtn.disabled = true;
             
-            // Enviar datos al servidor
-            const formData = new FormData(this);
+            // Permitir que Formspree maneje el envío
+            // No usar preventDefault() para que Formspree funcione correctamente
             
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNewsletterMessage('success', data.message);
-                    this.reset();
-                } else {
-                    showNewsletterMessage('error', data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showNewsletterMessage('error', 'Hubo un error al procesar tu suscripción. Por favor, inténtalo de nuevo.');
-            })
-            .finally(() => {
+            // Mostrar mensaje de éxito después de un breve delay
+            setTimeout(() => {
+                showNewsletterMessage('success', '¡Gracias por suscribirte! Te mantendremos informado sobre nuestros productos y promociones.');
+                this.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            });
+            }, 1000);
         });
     }
 }
@@ -483,9 +464,80 @@ function showNewsletterMessage(type, message) {
     }, 5000);
 }
 
-// Inicializar formulario de newsletter cuando se carga la página
+// Manejo del formulario de voluntarios con Formspree
+function initVoluntarioForm() {
+    console.log('Inicializando formulario de voluntarios...');
+    const voluntarioForm = document.getElementById('voluntarioForm');
+    
+    if (voluntarioForm) {
+        console.log('Formulario de voluntarios encontrado');
+        voluntarioForm.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            
+            // Permitir que Formspree maneje el envío
+            // No usar preventDefault() para que Formspree funcione correctamente
+            
+            // Mostrar mensaje de éxito después de un breve delay
+            setTimeout(() => {
+                showVoluntarioMessage('success', '¡Gracias por tu interés en ser voluntario! Nos pondremos en contacto contigo pronto.');
+                this.reset();
+                
+                // Cerrar el modal después de 2 segundos
+                setTimeout(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('voluntarioModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                }, 2000);
+                
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1000);
+        });
+    }
+}
+
+// Función para mostrar mensajes del formulario de voluntarios
+function showVoluntarioMessage(type, message) {
+    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+    
+    const alertHtml = `
+        <div class="alert ${alertClass} alert-dismissible fade show" role="alert" style="margin-bottom: 1rem;">
+            <i class="${icon} me-2"></i>
+            <strong>${type === 'success' ? '¡Éxito!' : 'Error:'}</strong> ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+    
+    // Limpiar mensajes anteriores
+    const existingAlerts = document.querySelectorAll('#voluntarioModal .alert');
+    existingAlerts.forEach(alert => alert.remove());
+    
+    // Insertar mensaje antes del formulario
+    const form = document.getElementById('voluntarioForm');
+    form.insertAdjacentHTML('beforebegin', alertHtml);
+    
+    // Auto-ocultar después de 8 segundos para mensajes de éxito
+    if (type === 'success') {
+        setTimeout(() => {
+            const alert = document.querySelector('#voluntarioModal .alert');
+            if (alert) {
+                alert.remove();
+            }
+        }, 8000);
+    }
+}
+
+// Inicializar todo cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
+    initLazyLoading();
     initNewsletterForm();
+    initVoluntarioForm();
 });
 
 // Exportar funciones para uso global si es necesario
@@ -495,5 +547,6 @@ window.InfinitaMente = {
     toggleElement,
     copyToClipboard,
     animateCounters,
-    showNewsletterMessage
+    showNewsletterMessage,
+    showVoluntarioMessage
 };

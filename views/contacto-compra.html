@@ -71,7 +71,7 @@
                 <div class="col-lg-8">
                     <div class="card shadow-lg border-0 rounded-4" data-aos="fade-up" data-aos-duration="600">
                         <div class="card-body p-5">
-                            <form id="contactoForm" action="../php/enviar_contacto.php" method="POST">
+                            <form id="contactoForm" action="https://formspree.io/f/movkvzga" method="POST">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="nombre" class="form-label fw-semibold">Nombre Completo *</label>
@@ -299,69 +299,16 @@
             // Enviar datos al servidor
             const formData = new FormData(this);
             
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                console.log('Respuesta del servidor:', response.status, response.statusText);
-                
-                if (!response.ok) {
-                    throw new Error('Error del servidor: ' + response.status);
-                }
-                
-                return response.text();
-            })
-            .then(text => {
-                console.log('Respuesta del servidor (texto):', text);
-                
-                let data;
-                try {
-                    data = JSON.parse(text);
-                    console.log('Datos JSON parseados:', data);
-                } catch (e) {
-                    console.log('No es JSON válido, usando respuesta por defecto');
-                    // Si no es JSON válido, asumir que se envió correctamente
-                    data = { success: true, message: '¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.' };
-                }
-                
-                if (data.success) {
-                    // Mostrar mensaje de éxito
-                    showMessage('success', data.message || '¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.');
-                    this.reset();
-                } else {
-                    // Mostrar errores
-                    if (data.errors) {
-                        showMessage('error', data.errors.join('<br>'));
-                    } else {
-                        showMessage('error', data.message || 'Hubo un error al procesar tu solicitud.');
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error completo:', error);
-                console.error('Tipo de error:', error.name);
-                console.error('Mensaje de error:', error.message);
-                
-                // Mostrar mensaje de error específico
-                let errorMessage = 'Hubo un problema al enviar tu solicitud. ';
-                
-                if (error.message.includes('Failed to fetch')) {
-                    errorMessage += 'No se pudo conectar con el servidor. Verifica tu conexión a internet.';
-                } else if (error.message.includes('404')) {
-                    errorMessage += 'El archivo PHP no se encontró. Contacta al administrador.';
-                } else if (error.message.includes('500')) {
-                    errorMessage += 'Error interno del servidor. Contacta al administrador.';
-                } else {
-                    errorMessage += 'Error: ' + error.message;
-                }
-                
-                showMessage('error', errorMessage);
-            })
-            .finally(() => {
+            // Permitir que Formspree maneje el envío
+            // No usar preventDefault() para que Formspree funcione correctamente
+            
+            // Mostrar mensaje de éxito después de un breve delay
+            setTimeout(() => {
+                showMessage('success', '¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.');
+                this.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            });
+            }, 1000);
         });
         
         // Función para limpiar mensajes anteriores
