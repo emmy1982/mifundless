@@ -1,7 +1,10 @@
 <?php
-// Configuración de email
-$to_email = "tu-email@empresa.com"; // CAMBIA ESTO por tu email real
+// Configuración de email para iFastNet
+$to_email = "emmyjose82@hotmail.com"; // Email de destino para solicitudes de compra
 $subject = "Nueva solicitud de compra - Infinita Mente";
+
+// Configuración adicional para iFastNet
+ini_set('sendmail_from', 'noreply@' . $_SERVER['HTTP_HOST']);
 
 // Verificar que el formulario fue enviado por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -47,26 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
     
-    // Crear el mensaje de email
+    // Crear el mensaje de email (optimizado para evitar spam)
     $email_message = "
     <html>
     <head>
-        <title>Nueva Solicitud de Compra</title>
+        <title>Nueva Solicitud de Compra - Infinita Mente</title>
+        <meta charset='UTF-8'>
         <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
-            .content { background: #f9f9f9; padding: 20px; }
-            .field { margin-bottom: 15px; }
-            .label { font-weight: bold; color: #667eea; }
-            .value { margin-left: 10px; }
-            .footer { background: #333; color: white; padding: 15px; text-align: center; font-size: 12px; }
+            .header { background: #D0006F; color: white; padding: 20px; text-align: center; }
+            .content { background: #ffffff; padding: 20px; border: 1px solid #e0e0e0; }
+            .field { margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 5px; }
+            .label { font-weight: bold; color: #D0006F; display: block; margin-bottom: 5px; }
+            .value { color: #333; }
+            .footer { background: #1D4F91; color: white; padding: 15px; text-align: center; font-size: 12px; }
         </style>
     </head>
     <body>
         <div class='container'>
             <div class='header'>
-                <h2>🛒 Nueva Solicitud de Compra</h2>
+                <h2>Nueva Solicitud de Compra</h2>
                 <p>Infinita Mente - Salud Emocional para Niños</p>
             </div>
             
@@ -130,17 +134,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </html>
     ";
     
-    // Configurar headers para email HTML
+    // Configurar headers para email HTML (optimizado para evitar spam)
+    $from_email = 'noreply@' . $_SERVER['HTTP_HOST'];
     $headers = array(
         'MIME-Version: 1.0',
         'Content-type: text/html; charset=UTF-8',
-        'From: ' . $email,
-        'Reply-To: ' . $email,
-        'X-Mailer: PHP/' . phpversion()
+        'From: Infinita Mente <' . $from_email . '>',
+        'Reply-To: ' . $nombre . ' <' . $email . '>',
+        'X-Mailer: PHP/' . phpversion(),
+        'X-Priority: 3',
+        'Return-Path: ' . $from_email,
+        'Message-ID: <' . time() . '.' . rand(1000, 9999) . '@' . $_SERVER['HTTP_HOST'] . '>',
+        'Date: ' . date('r'),
+        'X-Sender: ' . $from_email,
+        'X-Originating-IP: ' . $_SERVER['SERVER_ADDR']
     );
     
+    // Log para debugging
+    $log_message = "Intento de envío de email a: " . $to_email . " desde: " . $email . " - " . date('Y-m-d H:i:s');
+    error_log($log_message);
+    
+    // Crear versión de texto plano
+    $text_message = "Nueva Solicitud de Compra - Infinita Mente\n\n";
+    $text_message .= "Nombre: " . $nombre . "\n";
+    $text_message .= "Email: " . $email . "\n";
+    $text_message .= "Teléfono: " . $telefono . "\n";
+    $text_message .= "Ciudad/País: " . $ciudad . "\n";
+    $text_message .= "Producto: " . $producto . "\n";
+    $text_message .= "Cantidad: " . $cantidad . "\n";
+    $text_message .= "Preferencia de Contacto: " . $preferenciaContacto . "\n";
+    $text_message .= "Mensaje: " . $mensaje . "\n";
+    $text_message .= "Newsletter: " . $newsletter . "\n";
+    $text_message .= "Fecha: " . date('d/m/Y H:i:s') . "\n\n";
+    $text_message .= "Este email fue enviado desde el formulario de contacto de Infinita Mente";
+    
+    // Crear email multipart (HTML + texto)
+    $boundary = md5(uniqid(time()));
+    $headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
+    
+    $email_body = "--" . $boundary . "\r\n";
+    $email_body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $email_body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $email_body .= $text_message . "\r\n\r\n";
+    $email_body .= "--" . $boundary . "\r\n";
+    $email_body .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $email_body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $email_body .= $email_message . "\r\n\r\n";
+    $email_body .= "--" . $boundary . "--\r\n";
+    
     // Enviar email
-    if (mail($to_email, $subject, $email_message, implode("\r\n", $headers))) {
+    $mail_sent = mail($to_email, $subject, $email_body, implode("\r\n", $headers));
+    
+    // Log del resultado
+    error_log("Resultado del envío: " . ($mail_sent ? "ÉXITO" : "FALLO"));
+    
+    if ($mail_sent) {
         
         // Si el usuario quiere newsletter, agregarlo a la lista
         if (isset($_POST['newsletter'])) {

@@ -368,6 +368,13 @@ function copyToClipboard(text) {
 // Botón de subir (Scroll to Top)
 function initScrollToTop() {
     const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    // Verificar si el elemento existe antes de continuar
+    if (!scrollToTopBtn) {
+        console.log('Botón scrollToTop no encontrado, saltando inicialización');
+        return;
+    }
+    
     let ticking = false;
     
     // Mostrar/ocultar botón según scroll

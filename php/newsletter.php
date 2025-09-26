@@ -1,7 +1,10 @@
 <?php
 // Configuración de email para newsletter
-$to_email = "tu-email@empresa.com"; // CAMBIA ESTO por tu email real
+$to_email = "emmyjose82@hotmail.com"; // Email de destino para newsletter
 $subject = "Nueva suscripción al newsletter - Infinita Mente";
+
+// Configuración adicional para iFastNet
+ini_set('sendmail_from', 'noreply@' . $_SERVER['HTTP_HOST']);
 
 // Verificar que el formulario fue enviado por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

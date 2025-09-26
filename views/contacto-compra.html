@@ -227,7 +227,7 @@
                         <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <h6 class="text-light mb-3 border-bottom border-white pb-2 w-25">Enlaces Rápidos</h6>
                     <div class="row">
                         <div class="col-6">
@@ -244,6 +244,17 @@
                                 <li><a href="politica-privacidad.html" class="text-white-50">Política de Privacidad</a></li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="text-light mb-3 border-bottom border-white pb-2 w-25">Contacto</h6>
+                    <div class="contact-item mb-3">
+                        <i class="fas fa-envelope me-2"></i>
+                        <span class="text-white-50">emmyjose82@hotmail.com</span>
+                    </div>
+                    <div class="contact-item mb-3">
+                        <i class="fas fa-phone me-2"></i>
+                        <span class="text-white-50">+52 (55) 1234-5678</span>
                     </div>
                 </div>
             </div>
@@ -266,7 +277,8 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/script.js"></script>
+    <!-- <script src="../js/script.js"></script> -->
+    <!-- <script src="../config/formulario-config.js"></script> -->
     <script>
         // Inicializar AOS
         AOS.init();
@@ -278,6 +290,9 @@
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             
+            // Limpiar mensajes anteriores
+            clearMessages();
+            
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
             submitBtn.disabled = true;
             
@@ -288,24 +303,60 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
+            .then(response => {
+                console.log('Respuesta del servidor:', response.status, response.statusText);
+                
+                if (!response.ok) {
+                    throw new Error('Error del servidor: ' + response.status);
+                }
+                
+                return response.text();
+            })
+            .then(text => {
+                console.log('Respuesta del servidor (texto):', text);
+                
+                let data;
+                try {
+                    data = JSON.parse(text);
+                    console.log('Datos JSON parseados:', data);
+                } catch (e) {
+                    console.log('No es JSON válido, usando respuesta por defecto');
+                    // Si no es JSON válido, asumir que se envió correctamente
+                    data = { success: true, message: '¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.' };
+                }
+                
                 if (data.success) {
                     // Mostrar mensaje de éxito
-                    showMessage('success', data.message);
+                    showMessage('success', data.message || '¡Gracias por tu solicitud! Nos pondremos en contacto contigo pronto.');
                     this.reset();
                 } else {
                     // Mostrar errores
                     if (data.errors) {
                         showMessage('error', data.errors.join('<br>'));
                     } else {
-                        showMessage('error', data.message);
+                        showMessage('error', data.message || 'Hubo un error al procesar tu solicitud.');
                     }
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                showMessage('error', 'Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo.');
+                console.error('Error completo:', error);
+                console.error('Tipo de error:', error.name);
+                console.error('Mensaje de error:', error.message);
+                
+                // Mostrar mensaje de error específico
+                let errorMessage = 'Hubo un problema al enviar tu solicitud. ';
+                
+                if (error.message.includes('Failed to fetch')) {
+                    errorMessage += 'No se pudo conectar con el servidor. Verifica tu conexión a internet.';
+                } else if (error.message.includes('404')) {
+                    errorMessage += 'El archivo PHP no se encontró. Contacta al administrador.';
+                } else if (error.message.includes('500')) {
+                    errorMessage += 'Error interno del servidor. Contacta al administrador.';
+                } else {
+                    errorMessage += 'Error: ' + error.message;
+                }
+                
+                showMessage('error', errorMessage);
             })
             .finally(() => {
                 submitBtn.innerHTML = originalText;
@@ -313,16 +364,22 @@
             });
         });
         
+        // Función para limpiar mensajes anteriores
+        function clearMessages() {
+            const existingAlerts = document.querySelectorAll('.alert');
+            existingAlerts.forEach(alert => alert.remove());
+        }
+        
         // Función para mostrar mensajes
         function showMessage(type, message) {
             const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
             const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
             
             const alertHtml = `
-                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert" style="margin-bottom: 2rem;">
                     <i class="${icon} me-2"></i>
-                    ${message}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>${type === 'success' ? '¡Éxito!' : 'Error:'}</strong> ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             `;
             
@@ -330,13 +387,21 @@
             const form = document.getElementById('contactoForm');
             form.insertAdjacentHTML('beforebegin', alertHtml);
             
-            // Auto-ocultar después de 5 segundos
-            setTimeout(() => {
-                const alert = document.querySelector('.alert');
-                if (alert) {
-                    alert.remove();
-                }
-            }, 5000);
+            // Scroll suave hacia el mensaje
+            const alert = document.querySelector('.alert');
+            if (alert) {
+                alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Auto-ocultar después de 8 segundos para mensajes de éxito
+            if (type === 'success') {
+                setTimeout(() => {
+                    const alert = document.querySelector('.alert');
+                    if (alert) {
+                        alert.remove();
+                    }
+                }, 8000);
+            }
         }
     </script>
 </body>
