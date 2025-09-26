@@ -1,12 +1,17 @@
 /* Estilos personalizados para Infinita Mente */
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --primary-color: #D0006F;
     --secondary-color: #FFE066;
     --accent-color: #ed1e6f ;
     --yellow-color: #FFC600;
     --red-color: #FF66A3;
-    /* --text-dark: #2780be; */
     --text-dark: #1D4F91;
     --text-light: rgba(57, 73, 98, 0.485);
     --bg-light: #ff910020;
@@ -44,6 +49,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
+    display: block; /* Por defecto visible en desktop */
 }
 
 .hero-bg-image {
@@ -51,6 +57,16 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.hero-background-responsive{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: none; /* Por defecto oculta en desktop */
 }
 
 .hero-overlay {
@@ -1197,6 +1213,13 @@ footer{
     .hero-section {
         text-align: center;
         padding: 100px 0 50px;
+    }
+    .hero-background-responsive{
+        display: block;
+    }
+
+    .hero-background{
+        display: none;
     }
 
     .logo{
