@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar todas las funcionalidades
     initSmoothScrolling();
     initNavbarCloseOnClick();
+    initNavbarResponsive();
     initNavbarScroll();
     initAnimationsOnScroll();
     initCarouselControls();
@@ -60,40 +61,101 @@ function initNavbarCloseOnClick() {
     const navbarLinks = document.querySelectorAll('.navbar-nav .nav-link');
     
     navbarLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Cerrar el menú móvil inmediatamente
-            closeMobileMenu();
+        link.addEventListener('click', function(e) {
+            // Solo cerrar si estamos en modo móvil (menú colapsado)
+            if (window.innerWidth <= 991) {
+                // Cerrar el menú móvil inmediatamente
+                closeMobileMenu();
+                
+                // También cerrar con un pequeño delay como respaldo
+                setTimeout(() => {
+                    closeMobileMenu();
+                }, 100);
+            }
         });
     });
 }
 
-// Función para cerrar el menú móvil
+// Función para cerrar el menú móvil - Versión robusta
 function closeMobileMenu() {
     const navbarCollapse = document.getElementById('navbarNav');
     const navbarToggler = document.querySelector('.navbar-toggler');
     
-    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-        // Método directo: remover la clase show
-        navbarCollapse.classList.remove('show');
+    if (navbarCollapse && navbarToggler) {
+        // Método 1: Verificar si el menú está abierto
+        const isMenuOpen = navbarCollapse.classList.contains('show') || 
+                          navbarCollapse.classList.contains('collapsing');
         
-        // Actualizar el estado del botón toggler
-        if (navbarToggler) {
+        if (isMenuOpen) {
+            // Método directo: remover todas las clases relacionadas
+            navbarCollapse.classList.remove('show', 'collapsing');
+            
+            // Actualizar el estado del botón toggler
             navbarToggler.setAttribute('aria-expanded', 'false');
             navbarToggler.classList.add('collapsed');
-        }
-        
-        // También intentar con Bootstrap si está disponible
-        try {
-            if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
-                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                    toggle: false
-                });
-                bsCollapse.hide();
-            }
-        } catch (e) {
-            // Bootstrap no disponible, usando método directo
+            
+            // Forzar el estilo inline para asegurar que se cierre
+            navbarCollapse.style.height = '';
+            navbarCollapse.style.overflow = '';
+            
+            // Método 2: Usar Bootstrap Collapse si está disponible
+            setTimeout(() => {
+                try {
+                    if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+                        // Verificar si ya existe una instancia
+                        const existingCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                        if (existingCollapse) {
+                            existingCollapse.hide();
+                        } else {
+                            // Crear nueva instancia
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                                toggle: false
+                            });
+                            bsCollapse.hide();
+                        }
+                    }
+                } catch (e) {
+                    console.log('Bootstrap Collapse no disponible, usando método directo');
+                }
+            }, 50);
         }
     }
+}
+
+// Manejo responsive del navbar
+function initNavbarResponsive() {
+    // Cerrar menú móvil cuando se redimensiona la ventana a desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 991) {
+            // Si cambiamos a desktop, cerrar el menú móvil
+            const navbarCollapse = document.getElementById('navbarNav');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            
+            if (navbarCollapse && navbarToggler) {
+                navbarCollapse.classList.remove('show', 'collapsing');
+                navbarToggler.setAttribute('aria-expanded', 'false');
+                navbarToggler.classList.add('collapsed');
+                navbarCollapse.style.height = '';
+                navbarCollapse.style.overflow = '';
+            }
+        }
+    });
+    
+    // Manejar clic fuera del menú para cerrarlo
+    document.addEventListener('click', function(e) {
+        const navbar = document.querySelector('.navbar');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.getElementById('navbarNav');
+        
+        if (navbar && navbarToggler && navbarCollapse) {
+            // Si el menú está abierto y se hace clic fuera del navbar
+            if (navbarCollapse.classList.contains('show') && 
+                !navbar.contains(e.target) && 
+                window.innerWidth <= 991) {
+                closeMobileMenu();
+            }
+        }
+    });
 }
 
 // Efectos de navbar al hacer scroll
