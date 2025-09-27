@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto para Compra - Infinita Mente</title>
+    <title>Comprar Productos de Mindfulness - Infinita Mente | Tienda Online México</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Compra productos de mindfulness para niños en México. Kits de relajación, cartas de emociones, posters educativos y más. Envío a toda la República Mexicana.">
+    <meta name="keywords" content="comprar mindfulness niños, productos relajación infantil México, cartas emociones niños, posters educativos, kit mindfulness México, envío México">
+    <meta name="author" content="Infinita Mente">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="es">
+    <meta name="geo.region" content="MX">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infinitamente.org/contacto-compra.html">
+    <meta property="og:title" content="Comprar Productos de Mindfulness - Infinita Mente | Tienda Online México">
+    <meta property="og:description" content="Productos de mindfulness para niños con envío a toda México. Kits educativos, cartas de emociones y materiales de relajación infantil.">
+    <meta property="og:image" content="https://infinitamente.org/images/cartas.webp">
+    <meta property="og:locale" content="es_MX">
+    
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -271,9 +288,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/script.js"></script>
-    <!-- Fix específico para el menú responsive en hosting real -->
     <script src="../js/navbar-fix.js"></script>
-    <!-- <script src="../config/formulario-config.js"></script> -->
     <script>
         // Inicializar AOS
         if (typeof AOS !== 'undefined') {
@@ -281,7 +296,13 @@
                 duration: 800,
                 easing: 'ease-in-out',
                 once: true,
-                mirror: false
+                offset: 50,
+                delay: 0,
+                mirror: false,
+                disable: function() {
+                    // Deshabilitar AOS solo en pantallas extremadamente pequeñas
+                    return window.innerWidth < 320;
+                }
             });
         }
         

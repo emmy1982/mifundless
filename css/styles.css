@@ -955,12 +955,35 @@ h5{
 
 /* Responsive adjustments for tienda */
 @media (max-width: 768px) {
+    /* Deshabilitar hover effects en móviles para mejorar rendimiento */
     .product-card-wrapper:hover {
         transform: none;
     }
     
     .product-card:hover {
         transform: none;
+    }
+    
+    /* Mantener algunas animaciones suaves en móviles */
+    .offer-card:hover,
+    .how-it-works-card:hover,
+    .solution-card:hover,
+    .mindfulness-card:hover {
+        transform: none;
+    }
+    
+    /* Animaciones suaves para móviles */
+    .offer-card,
+    .how-it-works-card,
+    .solution-card,
+    .mindfulness-card,
+    .testimonial-card {
+        transition: all 0.3s ease;
+    }
+    
+    /* Animación de entrada más suave en móviles */
+    .animate-on-scroll.animated {
+        animation: fadeInUp 0.6s ease-out;
     }
     
     .product-btn {

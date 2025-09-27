@@ -2,8 +2,6 @@
 // Este archivo debe cargarse DESPUÉS de Bootstrap
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Navbar fix cargado');
-    
     // Función simple y robusta para cerrar el menú
     function closeNavbarMenu() {
         const navbarCollapse = document.getElementById('navbarNav');

@@ -3,14 +3,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar AOS
     AOS.init({
-        duration: 600,
+        duration: 800,
         easing: 'ease-in-out',
         once: true,
-        offset: 100,
+        offset: 50,
         delay: 0,
         disable: function() {
-            // Deshabilitar AOS en pantallas muy pequeñas para evitar problemas
-            return window.innerWidth < 480;
+            // Deshabilitar AOS solo en pantallas extremadamente pequeñas
+            return window.innerWidth < 320;
         }
     });
     
@@ -396,23 +396,6 @@ function debounce(func, wait) {
     };
 }
 
-// Lazy loading para imágenes
-function initLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-}
 
 // Contador animado para estadísticas
 function animateCounters() {
@@ -513,94 +496,11 @@ function initScrollToTop() {
     });
 }
 
-// Formulario de newsletter - Formspree maneja todo automáticamente
-function initNewsletterForm() {
-    // No hacer nada - Formspree maneja el formulario automáticamente
-}
-
-// Función para mostrar mensajes del newsletter
-function showNewsletterMessage(type, message) {
-    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-    const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
-    
-    const alertHtml = `
-        <div class="alert ${alertClass} alert-dismissible fade show mt-3" role="alert">
-            <i class="${icon} me-2"></i>
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    `;
-    
-    // Insertar mensaje después del formulario
-    const form = document.getElementById('newsletterForm');
-    const existingAlert = form.parentNode.querySelector('.alert');
-    
-    if (existingAlert) {
-        existingAlert.remove();
-    }
-    
-    form.insertAdjacentHTML('afterend', alertHtml);
-    
-    // Auto-ocultar después de 5 segundos
-    setTimeout(() => {
-        const alert = form.parentNode.querySelector('.alert');
-        if (alert) {
-            alert.remove();
-        }
-    }, 5000);
-}
-
-// Formulario de voluntarios - Formspree maneja todo automáticamente
-function initVoluntarioForm() {
-    // No hacer nada - Formspree maneja el formulario automáticamente
-}
-
-// Función para mostrar mensajes del formulario de voluntarios
-function showVoluntarioMessage(type, message) {
-    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-    const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
-    
-    const alertHtml = `
-        <div class="alert ${alertClass} alert-dismissible fade show" role="alert" style="margin-bottom: 1rem;">
-            <i class="${icon} me-2"></i>
-            <strong>${type === 'success' ? '¡Éxito!' : 'Error:'}</strong> ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    `;
-    
-    // Limpiar mensajes anteriores
-    const existingAlerts = document.querySelectorAll('#voluntarioModal .alert');
-    existingAlerts.forEach(alert => alert.remove());
-    
-    // Insertar mensaje antes del formulario
-    const form = document.getElementById('voluntarioForm');
-    form.insertAdjacentHTML('beforebegin', alertHtml);
-    
-    // Auto-ocultar después de 8 segundos para mensajes de éxito
-    if (type === 'success') {
-        setTimeout(() => {
-            const alert = document.querySelector('#voluntarioModal .alert');
-            if (alert) {
-                alert.remove();
-            }
-        }, 8000);
-    }
-}
-
-// Inicializar todo cuando se carga la página
-document.addEventListener('DOMContentLoaded', function() {
-    initLazyLoading();
-    initNewsletterForm();
-    initVoluntarioForm();
-});
-
 // Exportar funciones para uso global si es necesario
 window.InfinitaMente = {
     showSuccessMessage,
     showLoadingState,
     toggleElement,
     copyToClipboard,
-    animateCounters,
-    showNewsletterMessage,
-    showVoluntarioMessage
+    animateCounters
 };
