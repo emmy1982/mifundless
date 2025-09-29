@@ -7,7 +7,8 @@
 }
 
 :root {
-    --primary-color: #D0006F;
+    /* --primary-color: #D0006F; */
+    --primary-color: #ff873d;
     --secondary-color: #ffe066c8;
     --tertiary-color: #ff873d;
     --accent-color: #ed1e6f ;
@@ -237,7 +238,7 @@ h5{
     object-position: center;
 }
 .img-ninoslook{
-    width: 100%;
+    width: 80%;
     height: 100%;
     object-fit: cover;
     object-position: center;
@@ -1309,6 +1310,14 @@ footer{
 
     .primera-fila{
         margin-bottom: 60px!important;
+    }
+
+    .img-ninoslook{
+        width: 90%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: drop-shadow(10px 20px 0px var(--primary-color));
     }
 
     .nosotros-destacado{
