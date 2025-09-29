@@ -8,7 +8,8 @@
 
 :root {
     --primary-color: #D0006F;
-    --secondary-color: #FFE066;
+    --secondary-color: #ffe066c8;
+    --tertiary-color: #ff873d;
     --accent-color: #ed1e6f ;
     --yellow-color: #FFC600;
     --red-color: #FF66A3;
@@ -220,6 +221,35 @@ h5{
     align-items: center;
     justify-content: center;
     gap: 15px!important;
+}
+
+/* Nosotros Section */
+.nosotros-destacado{
+   
+    border-radius: 20px;
+    margin-top: 40px;
+}
+
+.img-cartas-nos{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.img-ninoslook{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: drop-shadow(10px 20px 0px var(--primary-color));
+}
+
+.sub-text{
+    font-size: 0.8rem!important;
+    /* font-style: italic; */
+    font-weight: 500;
+    margin-top: 20px;
+    width: 100%;
 }
 
 
@@ -1280,6 +1310,15 @@ footer{
     .primera-fila{
         margin-bottom: 60px!important;
     }
+
+    .nosotros-destacado{
+        text-align: center!important;
+    }
+
+    .solucion-container{
+        margin-top: -60px!important;
+    }
+
     .segunda-fila{
         padding: 24px!important;
         margin-top: 0px!important;
