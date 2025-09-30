@@ -8,7 +8,8 @@
 
 :root {
     /* --primary-color: #D0006F; */
-    --primary-color: #F5A623;
+    --primary-color: #D0006F;
+    /* --primary-color: #F5A623; */
     --secondary-color: #ffe066c8;
     --tertiary-color: #ff873d;
     --accent-color: #ed1e6f ;
@@ -112,7 +113,14 @@ h5{
     font-family: 'Annie Use Your Telescope', cursive;
     color: var(--text-dark) !important;
     /* text-shadow: 1px 1px 3px rgba(0,0,0,0.3); */
-    font-size: 4rem;
+    font-size: 3.3rem!important;
+}
+
+.bg-yellow{
+    background-image:linear-gradient(rgba(255, 224, 102, 0.545), rgba(255, 224, 102, 0.819)), url('../images/back-1.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .color-primary{
@@ -1404,6 +1412,12 @@ footer{
         width: 95%;
         margin: 0 auto;
         
+    }
+
+    .solucion-container{
+       width: 95%!important;
+       margin: 0 auto!important;
+       margin-bottom: 30px!important;
     }
 
     .cartas-nos-container{
