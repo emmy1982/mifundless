@@ -8,12 +8,13 @@
 
 :root {
     /* --primary-color: #D0006F; */
-    --primary-color: #ff873d;
+    --primary-color: #F5A623;
     --secondary-color: #ffe066c8;
     --tertiary-color: #ff873d;
     --accent-color: #ed1e6f ;
     --yellow-color: #FFC600;
     --red-color: #FF66A3;
+    --red-pastel: #FFB3BA; /* Color rojo pastel agregado */
     --text-dark: #1D4F91;
     --text-light: rgba(57, 73, 98, 0.485);
     --bg-light: #ff910020;
@@ -78,7 +79,7 @@ body {
     width: 100%;
     height: 100%;
     /* background: linear-gradient(135deg, rgba(74, 144, 226, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%); */
-    background:#fed160a0;
+    background:#fed1606d;
     z-index: 2;
 }
 .hero-overlay-2 {
@@ -232,10 +233,21 @@ h5{
 }
 
 .img-cartas-nos{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%!important;
+    max-width: 600px; /* Limita el ancho máximo en pantallas grandes */
+    height: 400px!important;
+    object-fit: contain; /* Evita que se deforme la imagen */
     object-position: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 991px) {
+    .img-cartas-nos{
+        max-width: 100%;
+        height: 250px;
+    }
 }
 .img-ninoslook{
     width: 80%;
@@ -245,6 +257,21 @@ h5{
     filter: drop-shadow(10px 20px 0px var(--primary-color));
 }
 
+
+.apoyo-container{
+
+    background-image:linear-gradient(rgba(255, 224, 102, 0.545), rgba(255, 224, 102, 0.819)), url('../images/back-1.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.text-apoyo{
+    width: 40%;
+    margin: 0 auto;
+   
+} 
+
 .sub-text{
     font-size: 0.8rem!important;
     /* font-style: italic; */
@@ -252,6 +279,13 @@ h5{
     margin-top: 20px;
     width: 100%;
 }
+
+.line-divisor{
+    background-color: var(--primary-color);
+    height: 2px;
+    margin-top: 20px;
+}
+
 
 
 /* Cards */
@@ -349,7 +383,7 @@ h5{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(245, 165, 35, 0.3), rgba(245, 165, 35, 0.3)), url('../images/back-1.webp');
+    background-image: linear-gradient(#fed1602c), url('../images/back-1.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1364,6 +1398,33 @@ footer{
         gap: 10px!important;
         margin-top: 0!important;
         margin-bottom: 18px!important;
+    }
+
+    .apoyo-container{
+        width: 95%;
+        margin: 0 auto;
+        
+    }
+
+    .cartas-nos-container{
+        width: 400px!important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cartas-nos{
+        width: 290px!important;
+        height: 190px!important;
+        object-fit: cover!important;
+        margin: 0 auto!important;
+        z-index: 9999!important;
+    }
+
+    .text-apoyo{
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
     }
 
     .card-img-top{
