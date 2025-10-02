@@ -149,16 +149,6 @@ h5{
     animation: slideInLeft 1s ease-out;
 }
 
-/* Hero Image */
-.hero-image img {
-    transition: transform 0.3s ease;
-    
-}
-
-.hero-image img:hover {
-    transform: translateY(-10px);
-}
-
 /* Navigation */
 .navbar {
     transition: all 0.3s ease, transform 0.3s ease-in-out;
@@ -312,6 +302,16 @@ h5{
     align-items: center;
     justify-content: center;
 }
+
+.offer-card-container{
+    transition: box-shadow 0.3s ease, border-radius 0.3s ease;
+}
+.offer-card-container:hover{
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+}
+
+
 
 .offer-icon img{
     width: 110px;
@@ -571,7 +571,7 @@ h5{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.6;
+    opacity: 0.5;
     z-index: -1;
 }
 
@@ -2121,7 +2121,7 @@ footer{
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    box-shadow: 0 4px 20px rgba(245, 166, 35, 0.3);
+    box-shadow: 0 4px 10px rgba(40, 40, 40, 0.303);
     transition: all 0.3s ease;
     opacity: 1;
     visibility: visible;
@@ -2130,9 +2130,9 @@ footer{
 }
 
 .scroll-to-top:hover {
-    background: var(--secondary-color);
+    background: var(--yellow-color);
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(245, 166, 35, 0.4);
+    box-shadow: 0 8px 30px rgba(42, 42, 42, 0.4);
 }
 
 .scroll-to-top.show {
