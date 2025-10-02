@@ -185,7 +185,7 @@
                 </div>
                 <div class="col-lg-6 " data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
                     <div class="hero-image ms-5">
-                        <img src="./images/hero7.png" alt="Niños sonriendo con un libro en las manos en Infinita Mente"
+                        <img src="./images/img-hero5.png" alt="Niños sonriendo con un libro en las manos en Infinita Mente"
                             class="img-fluid img-hero" width="655" height="603">
                     </div>
                 </div>
@@ -228,7 +228,7 @@
                 data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
                 <h3 class="fs-1 fw-bold font m-0" data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
                     Nuestra Solución</h3>
-                <div class="col-lg-6 " data-aos="fade-right" data-aos-duration="700" data-aos-delay="200">
+                <div class="col-lg-6 ">
                     <div class="solution-card  h-100 ">
 
                         <p class="mb-3">
@@ -254,8 +254,7 @@
                 </div>
                 <div class="line-divisor-grafica mx-auto w-25"></div>
 
-                <div class="col-lg-6 d-flex align-items-stretch  rounded-4 h-100" data-aos="fade-up"
-                    data-aos-duration="700" data-aos-delay="400">
+                <div class="col-lg-6 d-flex align-items-stretch  rounded-4 h-100">
                     <div class="solution-card p-0 p-lg-4 w-100 h-100 d-flex flex-column">
                         <p class="mb-3 fw-semibold fs-5">
                             Cuando los niños pueden regular sus emociones se observa:
@@ -1182,50 +1181,8 @@
     <script src="js/script.js"></script>
     <script src="js/navbar-fix.js"></script>
 
-    <!-- Configuración de Swiper para Noticias -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const noticiasSwiper = new Swiper('.noticias-swiper', {
-                // Configuración responsive
-                slidesPerView: 1,
-                spaceBetween: 30,
-                loop: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-
-                // Breakpoints responsive
-                breakpoints: {
-                    992: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                    }
-                },
-
-                // Navegación
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-
-                // Paginación
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-
-                // Efectos
-                effect: 'slide',
-                speed: 600,
-
-                // Touch
-                touchRatio: 1,
-                touchAngle: 45,
-                grabCursor: true,
-            });
-        });
-    </script>
+    <!-- Script de configuración de Swiper -->
+    <script src="js/swiper-config.js"></script>
 </body>
 
 </html>
