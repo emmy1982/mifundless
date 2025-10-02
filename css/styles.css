@@ -8,7 +8,7 @@
 
 :root {
     /* --primary-color: #D0006F; */
-    --primary-color: #ff873d;
+    --primary-color: #F5A623;
     /* --primary-color: #F5A623; */
     --secondary-color: #ffe066c8;
     --tertiary-color: #ff873d;
@@ -1237,6 +1237,9 @@ h5{
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 .shop-btn:hover {
@@ -1631,8 +1634,14 @@ h5{
 }  */
 
 footer{
-    background-color: #1D4F91;
+    background-image: url('../images/fondo-footer.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
+
+
 
 .footer-logo{
    width: 250px;
@@ -2323,7 +2332,7 @@ footer{
 
 /* Estilos para el footer de la página de contacto */
 .hero-section-contacto ~ footer {
-    background-image: url(../images/fondoBlue.png);
+    background-image: url(../images/fondo-footer.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2337,7 +2346,7 @@ footer{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(29, 79, 145, 0.9);
+    background: rgba(29, 79, 145, 0.85);
     z-index: 1;
 }
 
