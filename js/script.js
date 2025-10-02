@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadingStates();
     initParallaxEffects();
     initScrollToTop();
+    initChartAnimations();
 });
 
 // Smooth scrolling para navegación
@@ -329,6 +330,62 @@ function initModalHandlers() {
     if (voluntarioModal) {
         const modal = new bootstrap.Modal(voluntarioModal);
         
+        // Configuraciones para cada tipo de voluntariado
+        const voluntarioConfigs = {
+            'embajador': {
+                title: 'Quiero ser Embajador',
+                description: '¡Lleva Infinita Mente a tu escuela! Como embajador, podrás compartir nuestras técnicas de mindfulness con tu comunidad educativa.',
+                subject: 'Nueva solicitud de embajador - Infinita Mente'
+            },
+            'voluntario': {
+                title: 'Ser Voluntario',
+                description: 'Recibe un kit para promocionar Infinita Mente en tu escuela, club o empresa. Únete a nuestro movimiento de bienestar emocional.',
+                subject: 'Nueva solicitud de voluntario - Infinita Mente'
+            },
+            'regalos': {
+                title: 'Regalos Empresariales',
+                description: 'Entrega un obsequio que transforma y estrecha vínculos con tus colaboradores y sus familias. Perfecto para posadas, festejos y aniversarios.',
+                subject: 'Consulta sobre regalos empresariales - Infinita Mente'
+            }
+        };
+        
+        // Manejar clic en botones de voluntariado
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('[data-bs-toggle="modal"][data-bs-target="#voluntarioModal"]')) {
+                const tipo = e.target.getAttribute('data-voluntario-type');
+                const config = voluntarioConfigs[tipo];
+                
+                if (config) {
+                    // Actualizar título del modal
+                    const modalTitle = document.getElementById('modalTitle');
+                    if (modalTitle) {
+                        modalTitle.textContent = config.title;
+                    }
+                    
+                    // Actualizar descripción del modal
+                    const modalDescription = document.getElementById('modalDescription');
+                    if (modalDescription) {
+                        modalDescription.innerHTML = `<p class="text-muted">${config.description}</p>`;
+                    }
+                    
+                    // Actualizar tipo de solicitud
+                    const tipoSolicitud = document.getElementById('tipoSolicitud');
+                    if (tipoSolicitud) {
+                        tipoSolicitud.value = tipo;
+                    }
+                    
+                    // Actualizar subject del formulario
+                    const form = document.getElementById('voluntarioForm');
+                    if (form) {
+                        const subjectInput = form.querySelector('input[name="_subject"]');
+                        if (subjectInput) {
+                            subjectInput.value = config.subject;
+                        }
+                    }
+                }
+            }
+        });
+        
         // Limpiar formulario al cerrar modal
         voluntarioModal.addEventListener('hidden.bs.modal', function() {
             const form = this.querySelector('form');
@@ -338,6 +395,12 @@ function initModalHandlers() {
                 const invalidFields = form.querySelectorAll('.is-invalid');
                 invalidFields.forEach(field => clearFieldError(field));
             }
+            
+            // Resetear modal a estado por defecto
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            if (modalTitle) modalTitle.textContent = 'Únete Al Movimiento';
+            if (modalDescription) modalDescription.innerHTML = '<p class="text-muted">Completa el formulario y nos pondremos en contacto contigo.</p>';
         });
     }
 }
@@ -496,11 +559,95 @@ function initScrollToTop() {
     });
 }
 
+// Animación de barras de gráfica
+function initChartAnimations() {
+    const chartBars = document.querySelectorAll('.chart-bar-fill');
+    
+    if (chartBars.length === 0) {
+        return; // No hay gráficas para animar
+    }
+    
+    // Crear observer para detectar cuando la gráfica entra en vista
+    const chartObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateChartBar(entry.target);
+                chartObserver.unobserve(entry.target); // Solo animar una vez
+            }
+        });
+    }, {
+        threshold: 0.3, // Animar cuando el 30% de la gráfica sea visible
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observar cada barra de la gráfica
+    chartBars.forEach(bar => {
+        // Guardar el ancho original antes de inicializar
+        const originalStyle = bar.getAttribute('style');
+        const widthMatch = originalStyle ? originalStyle.match(/width:\s*(\d+)%/) : null;
+        
+        if (widthMatch) {
+            // Guardar el ancho objetivo
+            bar.setAttribute('data-target-width', widthMatch[1]);
+            // Inicializar con ancho 0 para la animación
+            bar.style.width = '0%';
+            chartObserver.observe(bar);
+        }
+    });
+}
+
+function animateChartBar(barElement) {
+    // Obtener el ancho objetivo del atributo data
+    const targetPercentage = parseInt(barElement.getAttribute('data-target-width'));
+    
+    if (!targetPercentage) {
+        return; // No se encontró el ancho objetivo
+    }
+    
+    const duration = 2000; // 2 segundos
+    const startTime = performance.now();
+    
+    // Obtener el elemento de porcentaje para animarlo también
+    const percentageElement = barElement.querySelector('.chart-percentage');
+    const percentageText = percentageElement ? percentageElement.textContent : '';
+    
+    function animate(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Función de easing suave
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentWidth = easeOutQuart * targetPercentage;
+        
+        // Actualizar el ancho de la barra
+        barElement.style.width = currentWidth + '%';
+        
+        // Animar el porcentaje si existe
+        if (percentageElement && percentageText) {
+            const currentPercentage = Math.round(easeOutQuart * parseInt(percentageText.replace('%', '')));
+            percentageElement.textContent = currentPercentage + '%';
+        }
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            // Asegurar que termine en el valor exacto
+            barElement.style.width = targetPercentage + '%';
+            if (percentageElement && percentageText) {
+                percentageElement.textContent = percentageText;
+            }
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
 // Exportar funciones para uso global si es necesario
 window.InfinitaMente = {
     showSuccessMessage,
     showLoadingState,
     toggleElement,
     copyToClipboard,
-    animateCounters
+    animateCounters,
+    animateChartBar
 };
