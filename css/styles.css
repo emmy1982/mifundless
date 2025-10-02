@@ -1923,6 +1923,14 @@ footer{
 
     }
 
+    .noticias-swiper .swiper-button-next,
+.noticias-swiper .swiper-button-prev {
+    color: var(--primary-color) !important;
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+}
+
     .bg-voluntario{
         width: 90%;
         margin: 0 auto;
