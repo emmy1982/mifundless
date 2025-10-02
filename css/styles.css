@@ -1,11 +1,16 @@
-/* Estilos personalizados para Infinita Mente */
+/* ========================================
+   INFINITA MENTE - ESTILOS PERSONALIZADOS
+   ======================================== */
 
+
+/* Reset básico */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Variables CSS */
 :root {
     /* --primary-color: #D0006F; */
     --primary-color: #F5A623;
@@ -16,7 +21,7 @@
     --yellow-color: #FFC600;
     --yellow-color-2: #ffe06674;
     --red-color: #FF66A3;
-    --red-pastel: #FFB3BA; /* Color rojo pastel agregado */
+    --red-pastel: #FFB3BA; 
     --text-dark: #1D4F91;
     --text-light: rgba(57, 73, 98, 0.485);
     --bg-light: #ff910020;
@@ -25,7 +30,11 @@
     --shadow-heavy: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* Tipografía */
+/* ========================================
+   2. TIPOGRAFÍA Y ELEMENTOS BASE
+   ======================================== */
+
+/* Tipografía base */
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
@@ -33,7 +42,52 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Hero Section */
+/* Títulos */
+h1{
+    color: var(--text-dark) !important;
+}
+
+h5{
+    color: var(--text-dark) !important;
+}
+
+/* Fuente personalizada */
+.font{
+    font-family: 'Annie Use Your Telescope', cursive;
+    color: var(--text-dark) !important;
+    /* text-shadow: 1px 1px 3px rgba(0,0,0,0.3); */
+    font-size: 3.3rem!important;
+}
+
+/* Colores de texto */
+.color-primary{
+    color: var(--text-dark) !important;
+}
+
+.text-hero-1{
+    color: var(--text-dark) !important;
+}
+
+.text-hero-2{
+    color: var(--text-dark) !important;
+}
+
+.text-hero{
+    font-family: 'Annie Use Your Telescope', cursive;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--text-dark) !important;
+}
+
+.text-small{
+    color: var(--text-dark) !important;
+}
+
+/* ========================================
+   4. HERO SECTION
+   ======================================== */
+
+/* Hero principal */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -42,11 +96,17 @@ body {
     overflow: hidden;
 }
 
+.hero-section .container {
+    position: relative;
+    z-index: 3;
+}
+
 /* Reducir espaciado entre hero y sección nosotros */
 #nosotros {
     padding-top: 50px;
 }
 
+/* Fondos del hero */
 .hero-background {
     position: absolute;
     top: 0;
@@ -74,6 +134,7 @@ body {
     display: none; /* Por defecto oculta en desktop */
 }
 
+/* Overlays del hero */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -84,6 +145,7 @@ body {
     background:linear-gradient(rgba(255, 227, 102, 0.441), rgba(255, 222, 102, 0.573));
     z-index: 2;
 }
+
 .hero-overlay-2 {
     position: absolute;
     top: 0;
@@ -97,26 +159,63 @@ body {
     z-index: 2;
 }
 
-.hero-section .container {
-    position: relative;
-    z-index: 3;
+/* ========================================
+   5. ELEMENTOS DE IMÁGENES Y COMPONENTES
+   ======================================== */
+
+/* Imágenes del hero */
+.img-hero{
+    filter:contrast(0.8) drop-shadow(10px 20px 0px var(--primary-color));
 }
 
-h1{
-    color: var(--text-dark) !important;
+/* Imágenes de cartas nosotros */
+.img-cartas-nos{
+    width: 100%!important;
+    max-width: 600px; /* Limita el ancho máximo en pantallas grandes */
+    height: 400px!important;
+    object-fit: contain; /* Evita que se deforme la imagen */
+    object-position: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-h5{
-    color: var(--text-dark) !important;
+@media (max-width: 991px) {
+    .img-cartas-nos{
+        max-width: 100%;
+        height: 250px;
+    }
 }
 
-.font{
-    font-family: 'Annie Use Your Telescope', cursive;
-    color: var(--text-dark) !important;
-    /* text-shadow: 1px 1px 3px rgba(0,0,0,0.3); */
-    font-size: 3.3rem!important;
+.img-ninoslook{
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter:contrast(0.7) drop-shadow(10px 20px 0px var(--primary-color));
 }
 
+.yoga-img{
+    width: 90%;
+    margin: 0 auto;
+    filter:contrast(0.7) drop-shadow( 20px 20px 0px var(--primary-color));
+}
+
+/* Elementos de caja */
+.tagline-box {
+    border-left: 4px solid var(--primary-color);
+    animation: slideInLeft 1s ease-out;
+}
+
+.box-btn{
+    width: 100%!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px!important;
+}
+
+/* Fondos */
 .bg-yellow{
     background-image:linear-gradient(rgba(255, 224, 102, 0.545), rgba(255, 224, 102, 0.819)), url('../images/back-1.webp');
     background-size: cover;
@@ -124,56 +223,16 @@ h5{
     background-position: center;
 }
 
-.color-primary{
-    color: var(--text-dark) !important;
-}
+/* ========================================
+   3. NAVEGACIÓN
+   ======================================== */
 
-.text-hero-1{
-    color: var(--text-dark) !important;
-}
-.text-hero-2{
-    color: var(--text-dark) !important;
-}
-
-
-.text-hero{
-    font-family: 'Annie Use Your Telescope', cursive;
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: var(--text-dark) !important;
-
-}
-
-.tagline-box {
-    border-left: 4px solid var(--primary-color);
-    animation: slideInLeft 1s ease-out;
-}
-
-/* Navigation */
+/* Navbar principal */
 .navbar {
     transition: all 0.3s ease, transform 0.3s ease-in-out;
     backdrop-filter: blur(10px);
     transform: translateY(0);
     width: 100%;
-}
-
-/* Navbar responsive para diferentes tamaños de pantalla */
-@media (min-width: 1401px) { 
-    .navbar {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-    .hero-image img{
-        width: 90%;
-        margin-top: 60px;
-    }
-    .hero-left{
-        margin-top: 60px;
-    }
-    .primera-fila{
-        width: 80%;
-        margin: 0 auto;
-    }
 }
 
 .navbar-brand {
@@ -210,6 +269,25 @@ h5{
 
 .logo{
     width: 300px;
+}
+
+/* Navbar responsive para diferentes tamaños de pantalla */
+@media (min-width: 1401px) { 
+    .navbar {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    .hero-image img{
+        width: 90%;
+        margin-top: 60px;
+    }
+    .hero-left{
+        margin-top: 60px;
+    }
+    .primera-fila{
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 
 .img-hero{
@@ -284,7 +362,11 @@ h5{
 
 
 
-/* Cards */
+/* ========================================
+   6. CARDS Y COMPONENTES
+   ======================================== */
+
+/* Cards base */
 .solution-card, .mindfulness-card, .offer-card, .how-it-works-card, .product-card, .testimonial-card {
     border-radius: 15px;
     transition: all 0.3s ease;
@@ -295,6 +377,7 @@ h5{
     transform: translateY(-10px);
 }
 
+/* Offer cards */
 .offer-card{
     width: 100%;
     display: flex;
@@ -306,12 +389,11 @@ h5{
 .offer-card-container{
     transition: box-shadow 0.3s ease, border-radius 0.3s ease;
 }
+
 .offer-card-container:hover{
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     border-radius: 15px;
 }
-
-
 
 .offer-icon img{
     width: 110px;
@@ -324,7 +406,7 @@ h5{
     color: white;
 }
 
-
+/* Elementos destacados */
 .highlight-box:hover::before {
     left: 100%;
 }
@@ -945,7 +1027,11 @@ h5{
     transition: transform 0.3s ease;
 }
 
-/* Buttons */
+/* ========================================
+   7. BOTONES Y ELEMENTOS INTERACTIVOS
+   ======================================== */
+
+/* Botones base */
 .btn {
     border-radius: 15px;
     font-weight: 600;
@@ -973,6 +1059,7 @@ h5{
     color: var(--primary-color);
     transform: translateY(-2px);
 }
+
 .btn-outline-light:hover {
     background:var(--primary-color);
     color: white;
@@ -1624,15 +1711,11 @@ h5{
     text-align: center;
 }
 
-/* Footer */
+/* ========================================
+   8. FOOTER
+   ======================================== */
 
-/* footer{
-    background-image: url(../images/fondoBlue.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}  */
-
+/* Footer principal */
 footer{
     background-image: url('../images/fondo-footer.png');
     background-size: cover;
@@ -1641,24 +1724,25 @@ footer{
     position: relative;
 }
 
-
-
 .footer-logo{
    width: 250px;
 }
+
 .footer-logo:hover{
     color: var(--primary-color) !important;
 }
 
+/* Enlaces del footer */
 .list-unstyled a{
     text-decoration: none;
     color: white !important;
 }
+
 .list-unstyled a:hover{
     color: var(--primary-color) !important;
-
 }
 
+/* Redes sociales */
 .social-links a {
     transition: all 0.3s ease;
     display: inline-block;
@@ -1731,7 +1815,11 @@ footer{
 
 
 
-/* Animations */
+/* ========================================
+   9. ANIMACIONES Y EFECTOS
+   ======================================== */
+
+/* Animaciones base */
 @keyframes float {
     0%, 100% {
         transform: translateY(0px);
@@ -1763,7 +1851,32 @@ footer{
     }
 }
 
-/* Responsive Design */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ========================================
+   10. RESPONSIVE DESIGN
+   ======================================== */
+
+/* Responsive para móviles */
 @media (max-width: 768px) {
     .navbar{
         width: 90%!important;
@@ -2051,6 +2164,10 @@ footer{
     background: #357abd;
 }
 
+/* ========================================
+   11. ELEMENTOS FLOTANTES
+   ======================================== */
+
 /* Botón de WhatsApp */
 .whatsapp-btn {
     position: fixed;
@@ -2090,19 +2207,6 @@ footer{
 
 .whatsapp-btn:hover i {
     transform: scale(1.1);
-}
-
-/* Animación de pulso para WhatsApp */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
 }
 
 /* Botón de Subir */
@@ -2183,7 +2287,11 @@ footer{
     }
 }
 
-/*****************************Estilos para página de contacto/compra *****************************/
+/* ========================================
+   12. ESTILOS PARA PÁGINAS ESPECÍFICAS
+   ======================================== */
+
+/* Página de contacto/compra */
 .hero-section-contacto {
     min-height: 60vh;
     display: flex;
