@@ -1826,7 +1826,7 @@ footer{
         height: 100%;
         object-fit: cover;
         object-position: center;
-        filter: drop-shadow(10px 20px 0px var(--primary-color));
+        filter:contrast(0.7) drop-shadow(10px 20px 0px var(--primary-color));
     }
 
     .nosotros-destacado{
