@@ -476,7 +476,7 @@ h5{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(#fed1602c), url('../images/back-1.webp');
+    background-image: linear-gradient(rgba(254, 209, 96, 0.17), rgba(254, 209, 96, 0.17)), url('../images/back-1.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
