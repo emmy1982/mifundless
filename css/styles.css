@@ -194,6 +194,10 @@ h5{
     }
 }
 
+.segunda-grafica{
+    width: 50%;
+}
+
 .img-ninoslook{
     width: 80%;
     height: 100%;
@@ -465,6 +469,11 @@ h5{
     
 }
 
+.bg-linear-gradient{
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #ffe0667c 50%, #ffe06628 100%)!important;
+
+}
+
 /* Eventos y Noticias */
 .eventos-noticias{
     background-size: cover;
@@ -685,7 +694,7 @@ h5{
 
 /* Testimonials Slider */
 .testimonials-slider {
-    margin: 3rem 0;
+    margin: 0;
 }
 
 .testimonials-slider .carousel {
@@ -922,8 +931,8 @@ h5{
 /* Responsive adjustments for testimonials */
 @media (max-width: 768px) {
     .testimonials-slider .carousel {
-        padding: 2rem 1rem;
-        margin: 0 1rem;
+        padding: 0rem 1rem;
+        margin: 0 ;
     }
     
     .testimonial-text p {
@@ -1804,7 +1813,7 @@ footer{
 }
 
 .bg-card-info{
-    background-color:#FFF3CD;
+    background:linear-gradient(135deg, var(--secondary-color) 0%, #ffe0667c 50%, #ffe06628 100%)!important;
     transition: all 0.3s ease;
 }
 
@@ -2004,6 +2013,11 @@ footer{
         width: 95%;
         margin: 0 auto;
         
+    }
+
+    .segunda-grafica{
+        width: 100%;
+        margin-bottom: 30px!important;
     }
 
     .destacado-text{
@@ -2302,6 +2316,59 @@ footer{
 /* ========================================
    12. ESTILOS PARA PÁGINAS ESPECÍFICAS
    ======================================== */
+
+/* Política de Privacidad */
+.privacy-content {
+    line-height: 1.8;
+}
+
+.privacy-section {
+    margin-bottom: 2.5rem;
+}
+
+.privacy-section h3 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.privacy-section h4 {
+    color: #2c5aa0;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.privacy-list {
+    padding-left: 1.5rem;
+}
+
+.privacy-list li {
+    margin-bottom: 0.5rem;
+}
+
+.contact-info {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.highlight-box {
+    background-color: #e3f2fd;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #bbdefb;
+    margin: 1.5rem 0;
+}
+
+.last-updated {
+    background-color: #fff3cd;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ffeaa7;
+    margin-bottom: 2rem;
+}
 
 /* Página de contacto/compra */
 .hero-section-contacto {
