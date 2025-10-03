@@ -58,6 +58,12 @@ h5{
     /* text-shadow: 1px 1px 3px rgba(0,0,0,0.3); */
     font-size: 3.3rem!important;
 }
+.font-light{
+    font-family: 'Annie Use Your Telescope', cursive;
+    color: white !important;
+    /* text-shadow: 1px 1px 3px rgba(0,0,0,0.3); */
+    font-size: 3.3rem!important;
+}
 
 /* Colores de texto */
 .color-primary{
@@ -166,7 +172,7 @@ h5{
 
 /* Imágenes del hero */
 .img-hero{
-    filter:contrast(0.8) drop-shadow(10px 20px 0px var(--primary-color));
+    filter:contrast(0.9) drop-shadow(10px 20px 0px var(--primary-color))!important;
 }
 
 /* Imágenes de cartas nosotros */
@@ -292,7 +298,7 @@ h5{
 }
 
 .img-hero{
-    filter:contrast(0.8) drop-shadow(10px 20px 0px var(--primary-color));
+    filter:saturate(1.2) brightness(1.2) contrast(0.7) drop-shadow(10px 20px 0px var(--primary-color))!important;
 
 }
 
@@ -378,6 +384,11 @@ h5{
     transform: translateY(-10px);
 }
 
+.solucion-container{
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.347);
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff008890 50%, #d6006f70 100%);
+}
+
 /* Offer cards */
 .offer-card{
     width: 100%;
@@ -449,6 +460,7 @@ h5{
 }
 
 .destacado-text{
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #ffe0667c 50%, #ffe06628 100%);
     width: 75%!important;
     
 }
@@ -632,18 +644,17 @@ h5{
 }
 
 .testimonials-section{
-    width: 80%;
+    /* width: 80%; */
     min-height: auto;
-    max-width: 1400px;
+    /* max-width: 1400px; */
     position: relative;
     overflow: hidden;
     padding: 4rem 0;
     margin: 0 auto;
-    border-radius: 20px;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.229)!important;
+    /* border-radius: 20px; */
 }
 
-.testimonials-section::before {
+/* .testimonials-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -656,7 +667,7 @@ h5{
     background-repeat: no-repeat;
     opacity: 0.5;
     z-index: -1;
-}
+} */
 
 .testimonial-quote {
     opacity: 0.3;
@@ -817,7 +828,7 @@ h5{
 .testimonials-slider .carousel-control-prev:hover,
 .testimonials-slider .carousel-control-next:hover {
     opacity: 1;
-    background: var(--secondary-color);
+    /* background: var(--secondary-color); */
     transform: translateY(-50%) scale(1.1);
 }
 
