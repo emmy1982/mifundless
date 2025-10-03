@@ -1,0 +1,105 @@
+═══════════════════════════════════════════════════════════════
+  🚀 CONFIGURACIÓN RÁPIDA DE EMAILJS - INFINITA MENTE
+═══════════════════════════════════════════════════════════════
+
+📝 PASOS MÍNIMOS NECESARIOS:
+
+1️⃣  CREAR CUENTA
+   → Ve a: https://www.emailjs.com/
+   → Regístrate (puedes usar Google)
+   → Confirma tu email
+
+2️⃣  CONECTAR EMAIL
+   → Dashboard → Email Services → Add New Service
+   → Selecciona Gmail (o tu proveedor)
+   → Autoriza tu cuenta
+   → COPIA EL SERVICE ID (ej: service_abc1234)
+
+3️⃣  CREAR 3 PLANTILLAS
+   
+   a) Newsletter (template_newsletter):
+      To Email: tu-email@gmail.com
+      Subject: Nueva suscripción al Newsletter - Infinita Mente
+      Content: Ver CONFIGURACION_EMAILJS.md
+   
+   b) Voluntario (template_voluntario):
+      To Email: tu-email@gmail.com
+      Subject: Nueva solicitud de {{tipo_solicitud}} - Infinita Mente
+      Content: Ver CONFIGURACION_EMAILJS.md
+   
+   c) Compra (template_compra):
+      To Email: tu-email@gmail.com
+      Subject: Nueva solicitud de compra - {{producto}}
+      Content: Ver CONFIGURACION_EMAILJS.md
+
+4️⃣  CONFIGURAR CÓDIGO
+   
+   → Abre: js/emailjs-config.js
+   → Busca la línea que dice: const EMAILJS_CONFIG = {
+   → Reemplaza:
+   
+   const EMAILJS_CONFIG = {
+       publicKey: 'TU_PUBLIC_KEY_AQUI',     // 👈 Pon tu Public Key
+       serviceId: 'TU_SERVICE_ID_AQUI',     // 👈 Pon tu Service ID
+       templates: {
+           newsletter: 'template_newsletter',
+           voluntario: 'template_voluntario',
+           compra: 'template_compra'
+       }
+   };
+
+5️⃣  ¿DÓNDE ENCUENTRO MIS CREDENCIALES?
+   
+   Public Key:
+   → Dashboard → Account → General → Public Key
+   
+   Service ID:
+   → Dashboard → Email Services → (tu servicio) → Service ID
+   
+   Template IDs:
+   → Dashboard → Email Templates → (tus plantillas)
+
+6️⃣  PROBAR
+   
+   → Abre tu sitio web
+   → Presiona F12 → Console
+   → Debes ver: "EmailJS inicializado correctamente"
+   → Prueba cada formulario
+   → Revisa tu email
+
+═══════════════════════════════════════════════════════════════
+
+⚡ EJEMPLO DE CONFIGURACIÓN COMPLETA:
+
+const EMAILJS_CONFIG = {
+    publicKey: 'WXyZ123AbCdEfGhI',          // ✅ Ejemplo
+    serviceId: 'service_abc1234',           // ✅ Ejemplo
+    templates: {
+        newsletter: 'template_newsletter',
+        voluntario: 'template_voluntario',
+        compra: 'template_compra'
+    }
+};
+
+═══════════════════════════════════════════════════════════════
+
+❓ PROBLEMAS COMUNES:
+
+• "EmailJS SDK no cargado"
+  → Verifica que los scripts estén en el orden correcto
+
+• "Failed to send email"
+  → Revisa Public Key, Service ID y Template IDs
+  → Verifica límite de 200 emails/mes del plan gratuito
+
+• No llegan emails
+  → Revisa spam/correo no deseado
+  → Ve a Dashboard → Email Log
+
+═══════════════════════════════════════════════════════════════
+
+📚 DOCUMENTACIÓN COMPLETA:
+   → Lee: CONFIGURACION_EMAILJS.md
+
+═══════════════════════════════════════════════════════════════
+

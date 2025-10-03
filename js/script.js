@@ -247,16 +247,30 @@ function initCarouselControls() {
 
 // Validación de formularios
 function initFormValidation() {
+    // La validación de formularios ahora es manejada por emailjs-config.js
+    // Este código se mantiene solo para validación visual en tiempo real
     const forms = document.querySelectorAll('form');
     
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Agregar validación en tiempo real a los campos
+        const inputs = form.querySelectorAll('input[required], textarea[required]');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    showFieldError(this, 'Este campo es requerido');
+                } else if (this.type === 'email' && !isValidEmail(this.value)) {
+                    showFieldError(this, 'Ingresa un email válido');
+                } else {
+                    clearFieldError(this);
+                }
+            });
             
-            if (validateForm(this)) {
-                showSuccessMessage();
-                this.reset();
-            }
+            // Limpiar error al empezar a escribir
+            input.addEventListener('input', function() {
+                if (this.classList.contains('is-invalid') && this.value.trim()) {
+                    clearFieldError(this);
+                }
+            });
         });
     });
 }
