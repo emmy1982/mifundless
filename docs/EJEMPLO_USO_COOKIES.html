@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Uso - Banner de Cookies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .demo-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .code-block {
+            background: #f8f9fa;
+            border-left: 4px solid #F5A623;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        .code-block code {
+            color: #c7254e;
+            font-family: 'Courier New', monospace;
+        }
+        .btn-demo {
+            margin: 0.5rem;
+        }
+        .cookie-info {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-cookie-bite text-warning me-2"></i>
+            Demostración del Banner de Cookies
+        </h1>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Nota:</strong> Esta página es solo para demostración. El banner de cookies se carga automáticamente en todas las páginas del sitio.
+        </div>
+
+        <!-- Sección: ¿Cómo funciona? -->
+        <section class="mb-5">
+            <h2><i class="fas fa-cog me-2"></i>¿Cómo funciona?</h2>
+            <p>El banner de cookies aparece automáticamente la primera vez que un usuario visita el sitio. Una vez que el usuario toma una decisión, sus preferencias se guardan por 1 año.</p>
+            
+            <div class="cookie-info">
+                <h5><i class="fas fa-database me-2"></i>Información Almacenada</h5>
+                <p><strong>Nombre de la cookie:</strong> <code>infinitamente_cookies_consent</code></p>
+                <p><strong>Duración:</strong> 365 días</p>
+                <p><strong>Formato:</strong> JSON con las preferencias del usuario</p>
+                <div class="code-block">
+                    <code>
+                        {<br>
+                        &nbsp;&nbsp;"necessary": true,<br>
+                        &nbsp;&nbsp;"analytics": true,<br>
+                        &nbsp;&nbsp;"functionality": true,<br>
+                        &nbsp;&nbsp;"marketing": false,<br>
+                        &nbsp;&nbsp;"timestamp": 1729857600000<br>
+                        }
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Acciones de Demo -->
+        <section class="mb-5">
+            <h2><i class="fas fa-play-circle me-2"></i>Acciones de Demostración</h2>
+            <p>Usa estos botones para interactuar con el banner de cookies:</p>
+            
+            <div class="d-flex flex-wrap justify-content-center gap-2 my-4">
+                <button class="btn btn-primary btn-demo" onclick="window.cookieBanner.showSettings()">
+                    <i class="fas fa-cog me-2"></i>Abrir Configuración
+                </button>
+                
+                <button class="btn btn-success btn-demo" onclick="window.cookieBanner.acceptAll()">
+                    <i class="fas fa-check-double me-2"></i>Aceptar Todas
+                </button>
+                
+                <button class="btn btn-warning btn-demo" onclick="window.cookieBanner.rejectAll()">
+                    <i class="fas fa-times me-2"></i>Rechazar Todas
+                </button>
+                
+                <button class="btn btn-danger btn-demo" onclick="resetCookies()">
+                    <i class="fas fa-trash me-2"></i>Resetear Cookies
+                </button>
+                
+                <button class="btn btn-info btn-demo" onclick="showCurrentPreferences()">
+                    <i class="fas fa-eye me-2"></i>Ver Preferencias
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección: Estado Actual -->
+        <section class="mb-5">
+            <h2><i class="fas fa-chart-line me-2"></i>Estado Actual</h2>
+            <div id="currentStatus" class="alert alert-secondary">
+                <i class="fas fa-spinner fa-spin me-2"></i>Cargando estado...
+            </div>
+        </section>
+
+        <!-- Sección: Tipos de Cookies -->
+        <section class="mb-5">
+            <h2><i class="fas fa-list me-2"></i>Tipos de Cookies</h2>
+            
+            <div class="accordion" id="cookieTypes">
+                <!-- Cookies Necesarias -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                            <i class="fas fa-shield-alt text-success me-2"></i>
+                            Cookies Necesarias
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#cookieTypes">
+                        <div class="accordion-body">
+                            <strong>Estado:</strong> <span class="badge bg-success">Siempre Activas</span>
+                            <p class="mt-2">Estas cookies son esenciales para el funcionamiento básico del sitio web. No se pueden desactivar.</p>
+                            <p><strong>Ejemplos:</strong></p>
+                            <ul>
+                                <li><code>infinitamente_cookies_consent</code> - Almacena las preferencias de cookies</li>
+                                <li>Cookies de sesión</li>
+                                <li>Cookies de seguridad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cookies Analíticas -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                            <i class="fas fa-chart-line text-info me-2"></i>
+                            Cookies Analíticas
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#cookieTypes">
+                        <div class="accordion-body">
+                            <strong>Estado:</strong> <span class="badge bg-warning" id="analyticsStatus">Opcional</span>
+                            <p class="mt-2">Nos ayudan a entender cómo los visitantes interactúan con nuestro sitio web.</p>
+                            <p><strong>Servicios utilizados:</strong></p>
+                            <ul>
+                                <li>Google Analytics</li>
+                                <li><code>_ga</code>, <code>_gid</code>, <code>_gat</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cookies de Funcionalidad -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                            <i class="fas fa-sliders-h text-purple me-2"></i>
+                            Cookies de Funcionalidad
+                        </button>
+                    </h2>
+                    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#cookieTypes">
+                        <div class="accordion-body">
+                            <strong>Estado:</strong> <span class="badge bg-warning" id="functionalityStatus">Opcional</span>
+                            <p class="mt-2">Permiten recordar tus preferencias y personalizar tu experiencia.</p>
+                            <p><strong>Ejemplos:</strong></p>
+                            <ul>
+                                <li>Idioma preferido</li>
+                                <li>Configuración de visualización</li>
+                                <li>Preferencias de usuario</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cookies de Marketing -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                            <i class="fas fa-bullhorn text-warning me-2"></i>
+                            Cookies de Marketing
+                        </button>
+                    </h2>
+                    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#cookieTypes">
+                        <div class="accordion-body">
+                            <strong>Estado:</strong> <span class="badge bg-warning" id="marketingStatus">Opcional</span>
+                            <p class="mt-2">Se utilizan para mostrar publicidad relevante y medir la efectividad de las campañas.</p>
+                            <p><strong>Servicios utilizados:</strong></p>
+                            <ul>
+                                <li>Facebook Pixel</li>
+                                <li>Google Ads</li>
+                                <li><code>_fbp</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Código de Ejemplo -->
+        <section class="mb-5">
+            <h2><i class="fas fa-code me-2"></i>Código de Ejemplo</h2>
+            <p>Así es cómo se integra el banner en tus páginas HTML:</p>
+            
+            <h5>1. Incluir el CSS (en el &lt;head&gt;)</h5>
+            <div class="code-block">
+                <code>&lt;link rel="stylesheet" href="css/styles.css"&gt;</code>
+            </div>
+
+            <h5>2. Incluir el JavaScript (antes de &lt;/body&gt;)</h5>
+            <div class="code-block">
+                <code>&lt;script src="js/cookie-banner.js"&gt;&lt;/script&gt;</code>
+            </div>
+
+            <h5>3. Abrir configuración programáticamente</h5>
+            <div class="code-block">
+                <code>window.cookieBanner.showSettings();</code>
+            </div>
+
+            <h5>4. Verificar preferencias del usuario</h5>
+            <div class="code-block">
+                <code>
+                    if (window.cookieBanner && window.cookieBanner.preferences) {<br>
+                    &nbsp;&nbsp;console.log(window.cookieBanner.preferences);<br>
+                    }
+                </code>
+            </div>
+        </section>
+
+        <!-- Enlaces -->
+        <section class="text-center">
+            <h2><i class="fas fa-link me-2"></i>Enlaces Relacionados</h2>
+            <div class="d-flex justify-content-center gap-2 flex-wrap my-4">
+                <a href="../views/politica-cookies.html" class="btn btn-outline-primary">
+                    <i class="fas fa-file-alt me-2"></i>Política de Cookies
+                </a>
+                <a href="../views/politica-privacidad.html" class="btn btn-outline-primary">
+                    <i class="fas fa-shield-alt me-2"></i>Política de Privacidad
+                </a>
+                <a href="../index.html" class="btn btn-outline-primary">
+                    <i class="fas fa-home me-2"></i>Volver al Inicio
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/cookie-banner.js"></script>
+    
+    <script>
+        // Función para resetear cookies
+        function resetCookies() {
+            document.cookie = "infinitamente_cookies_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            alert('✅ Cookies reseteadas. La página se recargará para mostrar el banner nuevamente.');
+            location.reload();
+        }
+
+        // Función para mostrar preferencias actuales
+        function showCurrentPreferences() {
+            if (window.cookieBanner && window.cookieBanner.preferences) {
+                const prefs = window.cookieBanner.preferences;
+                const prefsText = JSON.stringify(prefs, null, 2);
+                alert('Preferencias actuales:\n\n' + prefsText);
+                updateStatus();
+            } else {
+                alert('❌ No hay preferencias guardadas. Por favor, configura tus preferencias primero.');
+            }
+        }
+
+        // Actualizar estado
+        function updateStatus() {
+            const statusDiv = document.getElementById('currentStatus');
+            
+            if (window.cookieBanner && window.cookieBanner.preferences) {
+                const prefs = window.cookieBanner.preferences;
+                const date = new Date(prefs.timestamp);
+                
+                statusDiv.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-check-circle text-success me-2"></i>Preferencias Configuradas</h5>
+                            <ul class="list-unstyled">
+                                <li><strong>Necesarias:</strong> <span class="badge ${prefs.necessary ? 'bg-success' : 'bg-danger'}">${prefs.necessary ? 'Activas' : 'Inactivas'}</span></li>
+                                <li><strong>Analíticas:</strong> <span class="badge ${prefs.analytics ? 'bg-success' : 'bg-danger'}">${prefs.analytics ? 'Activas' : 'Inactivas'}</span></li>
+                                <li><strong>Funcionalidad:</strong> <span class="badge ${prefs.functionality ? 'bg-success' : 'bg-danger'}">${prefs.functionality ? 'Activas' : 'Inactivas'}</span></li>
+                                <li><strong>Marketing:</strong> <span class="badge ${prefs.marketing ? 'bg-success' : 'bg-danger'}">${prefs.marketing ? 'Activas' : 'Inactivas'}</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-calendar me-2"></i>Información</h5>
+                            <p><strong>Configurado:</strong> ${date.toLocaleDateString('es-MX', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            })}</p>
+                            <p><strong>Expira:</strong> Dentro de 1 año</p>
+                        </div>
+                    </div>
+                `;
+
+                // Actualizar badges en el acordeón
+                document.getElementById('analyticsStatus').innerHTML = prefs.analytics ? '<span class="badge bg-success">Activas</span>' : '<span class="badge bg-danger">Inactivas</span>';
+                document.getElementById('functionalityStatus').innerHTML = prefs.functionality ? '<span class="badge bg-success">Activas</span>' : '<span class="badge bg-danger">Inactivas</span>';
+                document.getElementById('marketingStatus').innerHTML = prefs.marketing ? '<span class="badge bg-success">Activas</span>' : '<span class="badge bg-danger">Inactivas</span>';
+            } else {
+                statusDiv.innerHTML = `
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>No hay preferencias configuradas.</strong><br>
+                    El banner debería aparecer automáticamente o puedes configurar las cookies manualmente.
+                `;
+            }
+        }
+
+        // Actualizar estado al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updateStatus, 1000);
+        });
+
+        // Actualizar estado cuando se guarden preferencias
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>
+
