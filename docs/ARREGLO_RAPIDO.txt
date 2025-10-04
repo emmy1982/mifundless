@@ -1,0 +1,139 @@
+╔══════════════════════════════════════════════════════════════╗
+║     🔧 ARREGLO RÁPIDO - PROBLEMA CON LOS FORMULARIOS        ║
+╚══════════════════════════════════════════════════════════════╝
+
+🔴 PROBLEMA DETECTADO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solo tienes 1 template de 3:
+  ✅ voluntario: template_u7jlsan (OK)
+  ❌ newsletter: NO EXISTE EN EMAILJS
+  ❌ compra: NO EXISTE EN EMAILJS
+
+
+🛠️ SOLUCIÓN EN 3 PASOS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1: ABRIR LA CONSOLA DEL NAVEGADOR
+   1. Abre tu sitio web
+   2. Presiona F12
+   3. Click en "Console"
+   4. Intenta enviar un formulario
+   5. ¿Qué mensaje sale en ROJO?
+
+
+PASO 2: CREAR LOS TEMPLATES FALTANTES
+
+   A) Newsletter:
+      → Ve a: https://dashboard.emailjs.com/admin/templates
+      → Click "Create New Template"
+      → Subject: Nueva suscripción al Newsletter
+      → Content: Ver DIAGNOSTICAR_PROBLEMA.md
+      → GUARDA y COPIA el Template ID
+      → En js/emailjs-config.js línea 11, reemplaza:
+        newsletter: 'EL_TEMPLATE_ID_QUE_COPIASTE',
+
+   B) Compra:
+      → Crea otro template
+      → Subject: Nueva solicitud de compra - {{producto}}
+      → Content: Ver DIAGNOSTICAR_PROBLEMA.md
+      → GUARDA y COPIA el Template ID
+      → En js/emailjs-config.js línea 13, reemplaza:
+        compra: 'EL_TEMPLATE_ID_QUE_COPIASTE',
+
+
+PASO 3: PROBAR DE NUEVO
+   1. Guarda los cambios en emailjs-config.js
+   2. Recarga la página (Ctrl + F5)
+   3. Abre la consola (F12)
+   4. Intenta enviar cada formulario
+   5. Revisa tu email (también SPAM)
+
+
+📋 CAMPOS IMPORTANTES EN LAS PLANTILLAS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Usa ESTOS nombres de variables en tus templates de EmailJS:
+
+Newsletter:
+  {{from_name}}  - Nombre del usuario
+  {{from_email}} - Email del usuario
+  {{message}}    - Mensaje
+
+Voluntario:
+  {{from_name}}      - Nombre
+  {{from_email}}     - Email
+  {{telefono}}       - Teléfono
+  {{organizacion}}   - Organización
+  {{message}}        - Motivación
+  {{tipo_solicitud}} - Tipo (embajador/voluntario/regalos)
+
+Compra:
+  {{from_name}}           - Nombre
+  {{from_email}}          - Email
+  {{telefono}}            - Teléfono
+  {{ciudad}}              - Ciudad
+  {{producto}}            - Producto seleccionado
+  {{cantidad}}            - Cantidad
+  {{preferenciaContacto}} - Cómo prefieres ser contactado
+  {{message}}             - Mensaje adicional
+  {{newsletter}}          - Sí/No
+
+
+🔍 MENSAJES QUE DEBES VER EN LA CONSOLA:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Al cargar la página:
+  ✅ EmailJS inicializado correctamente
+  ✅ Inicializando formularios con EmailJS...
+  ✅ Formulario de newsletter inicializado
+  ✅ Formulario de voluntario inicializado
+  ✅ Formulario de contacto/compra inicializado
+
+Al enviar un formulario:
+  📧 Intentando enviar [tipo]...
+  📋 Datos del formulario: {...}
+  🔑 Service ID: service_sakotif
+  📄 Template ID: template_xxx
+  ✅ [Tipo] enviado correctamente
+
+
+❌ SI VES ERRORES ROJOS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. "Template ID not found"
+   → Crea el template en EmailJS Dashboard
+
+2. "Service ID is not valid"
+   → Verifica que sea: service_sakotif
+
+3. "Public Key is not valid"
+   → Verifica que sea: 2MFRCWmp00Z2lskgh
+
+
+📧 VERIFICAR EN EMAILJS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Ve a: https://dashboard.emailjs.com/admin/logs
+2. Ahí verás TODOS los emails enviados
+3. Si aparece "Failed" → Click para ver por qué falló
+
+
+💡 SOBRE LOS CAMPOS QUE NO SE BORRAN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ANTES: Los campos NO se borraban después de enviar
+AHORA: ✅ ARREGLADO - Los campos se limpian automáticamente
+
+Si aún no se borran:
+  1. Ctrl + F5 (recarga forzada)
+  2. Borra el caché del navegador
+  3. Abre en modo incógnito
+
+
+═══════════════════════════════════════════════════════════════
+
+📖 LEE: DIAGNOSTICAR_PROBLEMA.md para instrucciones detalladas
+
+═══════════════════════════════════════════════════════════════
+

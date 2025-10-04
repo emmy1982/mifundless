@@ -1,285 +1,189 @@
-// Configuración de EmailJS para Infinita Mente
-// Documentación: https://www.emailjs.com/docs/
+// ============================================
+// CONFIGURACIÓN MÚLTIPLES CUENTAS DE EMAILJS
+// ============================================
 
-// ============================================
-// CONFIGURACIÓN - REEMPLAZA CON TUS DATOS
-// ============================================
+// CUENTA 1: Newsletter y Compra
 const EMAILJS_CONFIG = {
-    publicKey: 'jDFKTFNFLc9mjgB7e',  // Reemplazar con tu Public Key de EmailJS
-    serviceId: 'service_sakotif',  // Reemplazar con tu Service ID
+    publicKey: '9Tasc0Yx2Xd3c9oDp',
+    serviceId: 'service_evmu12o',
     templates: {
-        newsletter: 'template_newsletter',      // Template ID para newsletter
-        voluntario: 'template_voluntario',      // Template ID para voluntarios
-        compra: 'template_compra'              // Template ID para compras
+        newsletter: 'template_gwytxgs',
+        compra: 'template_s0h5exh' 
     }
 };
 
-// ============================================
-// INICIALIZACIÓN
-// ============================================
+// CUENTA 2: Voluntario (segunda cuenta de EmailJS)
+const EMAILJS_CONFIG_VOLUNTARIO = {
+    publicKey: 'EEIWWmrJv7IKBH2g0',      // 👈 Pon la Public Key de tu segunda cuenta
+    serviceId: 'service_7sdd8p3',      // 👈 Pon el Service ID de tu segunda cuenta
+    templateId: 'template_tlvw0xp'     // 👈 Pon el Template ID del voluntario
+};
+
+// Inicializar EmailJS con la primera cuenta (se reinicializará cuando sea necesario)
 (function() {
-    // Inicializar EmailJS cuando el DOM esté listo
     if (typeof emailjs !== 'undefined') {
         emailjs.init(EMAILJS_CONFIG.publicKey);
-        console.log('EmailJS inicializado correctamente');
     } else {
-        console.error('EmailJS SDK no cargado. Asegúrate de incluir el script de EmailJS.');
+        console.error('❌ EmailJS no cargado');
     }
 })();
 
 // ============================================
-// MANEJADORES DE FORMULARIOS
+// FORMULARIOS - VERSIÓN SIMPLE
 // ============================================
 
-// Formulario de Newsletter
-function initNewsletterForm() {
-    const form = document.getElementById('newsletterForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+// Esperar a que TODO esté cargado
+window.addEventListener('load', function() {
+    
+    // ========== FORMULARIO NEWSLETTER ==========
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+        // Remover cualquier listener anterior
+        const newForm = newsletterForm.cloneNode(true);
+        newsletterForm.parentNode.replaceChild(newForm, newsletterForm);
         
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
+        newForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+            
+            const nombre = this.querySelector('[name="nombre"]').value;
+            const email = this.querySelector('[name="email"]').value;
+            
+            const datosEnviar = {
+                from_name: nombre,
+                from_email: email,
+                message: 'Nueva suscripción al newsletter'
+            };
+            
+            emailjs.send(
+                EMAILJS_CONFIG.serviceId,
+                EMAILJS_CONFIG.templates.newsletter,
+                datosEnviar
+            ).then(function(response) {
+                alert('¡Suscripción exitosa! Revisa tu email.');
+                newForm.reset();
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }).catch(function(error) {
+                console.error('❌ Error al enviar newsletter:', error);
+                alert('Error: ' + (error.text || 'No se pudo enviar'));
+                btn.disabled = false;
+                btn.textContent = originalText;
+            });
+        });
+    }
+    
+    // ========== FORMULARIO VOLUNTARIO (Segunda Cuenta) ==========
+    const voluntarioForm = document.getElementById('voluntarioForm');
+    if (voluntarioForm) {
+        // Remover cualquier listener anterior
+        const newVolForm = voluntarioForm.cloneNode(true);
+        voluntarioForm.parentNode.replaceChild(newVolForm, voluntarioForm);
         
-        // Mostrar estado de carga
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-        submitBtn.disabled = true;
-
-        // Preparar datos del formulario
-        const formData = {
-            nombre: form.querySelector('[name="nombre"]').value,
-            email: form.querySelector('[name="email"]').value,
-            tipo: 'Newsletter'
-        };
-
-        // Enviar con EmailJS
-        emailjs.send(
-            EMAILJS_CONFIG.serviceId,
-            EMAILJS_CONFIG.templates.newsletter,
-            formData
-        ).then(
-            function(response) {
-                console.log('Newsletter enviado correctamente', response);
-                showSuccessNotification('¡Gracias por suscribirte! Te mantendremos informado.');
-                form.reset();
-            },
-            function(error) {
-                console.error('Error al enviar newsletter:', error);
-                showErrorNotification('Hubo un error al procesar tu suscripción. Por favor, intenta de nuevo.');
-            }
-        ).finally(
-            function() {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        );
-    });
-}
-
-// Formulario de Voluntario (Modal)
-function initVoluntarioForm() {
-    const form = document.getElementById('voluntarioForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        
-        // Mostrar estado de carga
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-        submitBtn.disabled = true;
-
-        // Preparar datos del formulario
-        const tipoSolicitud = form.querySelector('[name="tipo_solicitud"]').value;
-        const formData = {
-            nombre: form.querySelector('[name="nombre"]').value,
-            email: form.querySelector('[name="email"]').value,
-            telefono: form.querySelector('[name="telefono"]').value,
-            organizacion: form.querySelector('[name="organizacion"]').value,
-            motivacion: form.querySelector('[name="motivacion"]').value,
-            tipo_solicitud: tipoSolicitud,
-            tipo: 'Voluntario'
-        };
-
-        // Enviar con EmailJS
-        emailjs.send(
-            EMAILJS_CONFIG.serviceId,
-            EMAILJS_CONFIG.templates.voluntario,
-            formData
-        ).then(
-            function(response) {
-                console.log('Solicitud de voluntario enviada correctamente', response);
-                showSuccessNotification('¡Gracias! Hemos recibido tu solicitud. Nos pondremos en contacto contigo pronto.');
-                form.reset();
+        newVolForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+            
+            const formData = {
+                from_name: this.querySelector('[name="nombre"]').value,
+                from_email: this.querySelector('[name="email"]').value,
+                telefono: this.querySelector('[name="telefono"]').value,
+                organizacion: this.querySelector('[name="organizacion"]').value || 'No especificado',
+                message: this.querySelector('[name="motivacion"]').value,
+                tipo_solicitud: this.querySelector('[name="tipo_solicitud"]').value
+            };
+            
+            // Reinicializar EmailJS con la segunda cuenta
+            emailjs.init(EMAILJS_CONFIG_VOLUNTARIO.publicKey);
+            
+            emailjs.send(
+                EMAILJS_CONFIG_VOLUNTARIO.serviceId,
+                EMAILJS_CONFIG_VOLUNTARIO.templateId,
+                formData
+            ).then(function(response) {
+                alert('¡Solicitud enviada! Te contactaremos pronto.');
+                newVolForm.reset();
+                btn.disabled = false;
+                btn.innerHTML = originalText;
                 
-                // Cerrar modal después de 2 segundos
-                setTimeout(function() {
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('voluntarioModal'));
-                    if (modal) modal.hide();
-                }, 2000);
-            },
-            function(error) {
-                console.error('Error al enviar solicitud de voluntario:', error);
-                showErrorNotification('Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo.');
-            }
-        ).finally(
-            function() {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        );
-    });
-}
-
-// Formulario de Contacto/Compra
-function initContactoForm() {
-    const form = document.getElementById('contactoForm');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        
-        // Mostrar estado de carga
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-        submitBtn.disabled = true;
-
-        // Preparar datos del formulario
-        const formData = {
-            nombre: form.querySelector('[name="nombre"]').value,
-            email: form.querySelector('[name="email"]').value,
-            telefono: form.querySelector('[name="telefono"]').value,
-            ciudad: form.querySelector('[name="ciudad"]').value,
-            producto: form.querySelector('[name="producto"]').value,
-            cantidad: form.querySelector('[name="cantidad"]').value,
-            preferenciaContacto: form.querySelector('[name="preferenciaContacto"]:checked').value,
-            mensaje: form.querySelector('[name="mensaje"]').value,
-            newsletter: form.querySelector('[name="newsletter"]').checked ? 'Sí' : 'No',
-            tipo: 'Compra'
-        };
-
-        // Enviar con EmailJS
-        emailjs.send(
-            EMAILJS_CONFIG.serviceId,
-            EMAILJS_CONFIG.templates.compra,
-            formData
-        ).then(
-            function(response) {
-                console.log('Solicitud de compra enviada correctamente', response);
-                showSuccessNotification('¡Gracias! Hemos recibido tu solicitud. Nos pondremos en contacto contigo pronto para coordinar tu compra.');
-                form.reset();
+                // Volver a inicializar con la cuenta principal
+                emailjs.init(EMAILJS_CONFIG.publicKey);
                 
-                // Scroll suave al inicio de la página
+                // Cerrar modal si existe
                 setTimeout(function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }, 1500);
-            },
-            function(error) {
-                console.error('Error al enviar solicitud de compra:', error);
-                showErrorNotification('Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo o contáctanos directamente.');
-            }
-        ).finally(
-            function() {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        );
-    });
-}
-
-// ============================================
-// FUNCIONES DE NOTIFICACIÓN
-// ============================================
-
-function showSuccessNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'alert alert-success alert-dismissible fade show emailjs-notification';
-    notification.style.cssText = 'position: fixed; top: 100px; right: 20px; z-index: 9999; min-width: 350px; max-width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); animation: slideInRight 0.5s ease;';
-    notification.innerHTML = `
-        <i class="fas fa-check-circle me-2"></i>
-        <strong>¡Éxito!</strong><br>
-        ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    `;
+                    const modal = document.getElementById('voluntarioModal');
+                    if (modal) {
+                        const bsModal = bootstrap.Modal.getInstance(modal);
+                        if (bsModal) bsModal.hide();
+                    }
+                }, 1000);
+            }).catch(function(error) {
+                console.error('❌ Error al enviar formulario de voluntario:', error);
+                alert('Error: ' + (error.text || 'No se pudo enviar'));
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                
+                // Volver a inicializar con la cuenta principal
+                emailjs.init(EMAILJS_CONFIG.publicKey);
+            });
+        });
+    }
     
-    document.body.appendChild(notification);
-    
-    // Auto-remover después de 5 segundos
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 300);
-    }, 5000);
-}
-
-function showErrorNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'alert alert-danger alert-dismissible fade show emailjs-notification';
-    notification.style.cssText = 'position: fixed; top: 100px; right: 20px; z-index: 9999; min-width: 350px; max-width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); animation: slideInRight 0.5s ease;';
-    notification.innerHTML = `
-        <i class="fas fa-exclamation-triangle me-2"></i>
-        <strong>Error</strong><br>
-        ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Auto-remover después de 7 segundos
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 300);
-    }, 7000);
-}
-
-// ============================================
-// INICIALIZACIÓN AUTOMÁTICA
-// ============================================
-
-// Esperar a que el DOM esté completamente cargado
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Inicializando formularios con EmailJS...');
-    
-    // Inicializar todos los formularios
-    initNewsletterForm();
-    initVoluntarioForm();
-    initContactoForm();
-    
-    console.log('Formularios de EmailJS inicializados');
+    // ========== FORMULARIO COMPRA ==========
+    const contactoForm = document.getElementById('contactoForm');
+    if (contactoForm) {
+        // Remover cualquier listener anterior
+        const newContactoForm = contactoForm.cloneNode(true);
+        contactoForm.parentNode.replaceChild(newContactoForm, contactoForm);
+        
+        newContactoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+            
+            const preferenciaContacto = this.querySelector('[name="preferenciaContacto"]:checked');
+            
+            const formData = {
+                from_name: this.querySelector('[name="nombre"]').value,
+                from_email: this.querySelector('[name="email"]').value,
+                telefono: this.querySelector('[name="telefono"]').value,
+                ciudad: this.querySelector('[name="ciudad"]').value,
+                producto: this.querySelector('[name="producto"]').value,
+                cantidad: this.querySelector('[name="cantidad"]').value,
+                preferenciaContacto: preferenciaContacto ? preferenciaContacto.value : 'email',
+                message: this.querySelector('[name="mensaje"]').value || 'Sin mensaje',
+                newsletter: this.querySelector('[name="newsletter"]').checked ? 'Sí' : 'No'
+            };
+            
+            emailjs.send(
+                EMAILJS_CONFIG.serviceId,
+                EMAILJS_CONFIG.templates.compra,
+                formData
+            ).then(function(response) {
+                alert('¡Solicitud enviada! Te contactaremos pronto.');
+                newContactoForm.reset();
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }).catch(function(error) {
+                console.error('❌ Error al enviar formulario de compra:', error);
+                alert('Error: ' + (error.text || 'No se pudo enviar'));
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            });
+        });
+    }
 });
-
-// Estilos para animación de notificaciones
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    .emailjs-notification {
-        animation: slideInRight 0.5s ease;
-    }
-`;
-document.head.appendChild(style);
-

@@ -1,0 +1,140 @@
+╔═══════════════════════════════════════════════════════════╗
+║              🧪 PRUEBA SIMPLE - EMAILJS                   ║
+╚═══════════════════════════════════════════════════════════╝
+
+📝 CÓDIGO SIMPLIFICADO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Ya actualicé js/emailjs-config.js a una versión MÁS SIMPLE
+✅ Ahora usa alerts simples en lugar de notificaciones complejas
+✅ Solo 150 líneas en lugar de 370
+
+
+🧪 PRUEBA PASO A PASO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1: RECARGAR LA PÁGINA
+   1. Presiona Ctrl + Shift + R (recarga forzada)
+   2. O cierra y abre el navegador
+
+PASO 2: VERIFICAR EN CONSOLA
+   1. Presiona F12
+   2. Ve a "Console"
+   3. Deberías ver:
+      ✅ EmailJS listo
+      Newsletter form encontrado
+      Voluntario form encontrado
+      Formularios inicializados
+
+PASO 3: PROBAR NEWSLETTER
+   1. Ve al final de index.html (sección contacto)
+   2. Llena:
+      Nombre: Test
+      Email: tu-email@gmail.com
+   3. Click "Suscribirse"
+   4. ¿Qué pasa?
+      A) Sale un alert que dice "¡Suscripción exitosa!"
+      B) Los campos se borran solos
+      C) En 1 minuto te llega un email (revisa spam)
+   
+   Si sale un alert de "Error:", dime qué dice exactamente.
+
+PASO 4: REVISAR EMAIL
+   1. Espera 1-2 minutos
+   2. Revisa tu bandeja de entrada
+   3. Revisa SPAM/CORREO NO DESEADO
+   4. Busca email con asunto:
+      "Nueva suscripción al Newsletter - Infinita Mente"
+
+
+❓ SI NO FUNCIONA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ¿Sale un alert de error?
+   → Copia el texto EXACTO del alert
+
+2. ¿La consola muestra algo en ROJO?
+   → Copia TODO el texto rojo
+
+3. ¿No pasa nada al hacer click?
+   → Mira si en la consola dice "Newsletter form encontrado"
+
+4. ¿El botón dice "Enviando..." pero nunca termina?
+   → Espera 30 segundos y dime qué pasa
+
+
+📊 VERIFICAR EN EMAILJS DASHBOARD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ve a: https://dashboard.emailjs.com/admin/logs
+
+Aquí verás:
+   ✅ Todos los emails que EmailJS intentó enviar
+   ✅ Si fueron exitosos (Success) o fallaron (Failed)
+   ✅ El motivo del error si falló
+
+Si aparece "Failed", click en el registro para ver por qué.
+
+
+🔑 TU CONFIGURACIÓN ACTUAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Public Key: 2MFRCWmp00Z2lskgh
+Service ID: service_sakotif
+
+Templates:
+  ✅ Newsletter: template_riwnzjd
+  ✅ Voluntario: template_u7jlsan
+  ❌ Compra: template_compra (falta crear)
+
+
+💡 CAMBIOS QUE HICE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ✅ Código mucho más simple (150 líneas vs 370)
+2. ✅ Usa .reset() para limpiar formularios
+3. ✅ Usa alert() simple en lugar de notificaciones complejas
+4. ✅ Mejor manejo de errores
+5. ✅ Logs más claros en consola
+
+
+📧 ESTRUCTURA DE TUS TEMPLATES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+En EmailJS Dashboard, tus templates deben usar estos campos:
+
+Newsletter (template_riwnzjd):
+   {{from_name}}  ← Nombre
+   {{from_email}} ← Email
+   {{message}}    ← Mensaje
+
+Voluntario (template_u7jlsan):
+   {{from_name}}      ← Nombre
+   {{from_email}}     ← Email
+   {{telefono}}       ← Teléfono
+   {{organizacion}}   ← Organización
+   {{message}}        ← Motivación
+   {{tipo_solicitud}} ← Tipo
+
+Compra (template_compra - cuando lo crees):
+   {{from_name}}           ← Nombre
+   {{from_email}}          ← Email
+   {{telefono}}            ← Teléfono
+   {{ciudad}}              ← Ciudad
+   {{producto}}            ← Producto
+   {{cantidad}}            ← Cantidad
+   {{preferenciaContacto}} ← Cómo contactar
+   {{message}}             ← Mensaje
+   {{newsletter}}          ← Sí/No
+
+
+╔═══════════════════════════════════════════════════════════╗
+║  🎯 PRUEBA AHORA Y DIME:                                  ║
+║                                                           ║
+║  1. ¿Qué dice la consola cuando cargas la página?        ║
+║  2. ¿Qué dice el alert cuando envías el formulario?      ║
+║  3. ¿Los campos se borran después de enviar?             ║
+║  4. ¿Te llegó el email? (espera 1-2 minutos)             ║
+║  5. Screenshot de la consola si hay errores              ║
+╚═══════════════════════════════════════════════════════════╝
+
